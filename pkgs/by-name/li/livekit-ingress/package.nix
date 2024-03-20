@@ -1,7 +1,4 @@
-{ lib
-, buildGoModule
-, fetchFromGitHub
-}:
+{ lib, buildGoModule, fetchFromGitHub, pkg-config, glib, gobject-introspection, gst_all_1 }:
 
 buildGoModule rec {
   pname = "livekit-ingress";
@@ -11,10 +8,13 @@ buildGoModule rec {
     owner = "livekit";
     repo = "ingress";
     rev = "v${version}";
-    hash = "sha256-2MooX+wy7KetxEBgQoVoL4GuVkm+SbTzYgfWyLL7KU8=";
+    hash = "sha256-d5H8MEVL0xNyzufV1lKLu3TS/usw5bCPlfXAjdcqhII=";
   };
 
-  vendorHash = "sha256-8YR0Bl+sQsqpFtD+1GeYaydBdHeM0rRL2NbgAh9kCj0=";
+  nativeBuildInputs = [ pkg-config glib.dev gobject-introspection.dev ];
+  buildInputs = [ gst_all_1.gstreamer.dev gst_all_1.gst-plugins-base.dev ];
+
+  vendorHash = "sha256-IPNRKXsSoTXVqq6pcp4QVepxim+7eDa8qh5b1No6DLE=";
 
   subPackages = [ "cmd/server" ];
 
