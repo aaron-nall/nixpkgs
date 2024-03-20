@@ -2692,10 +2692,6 @@ with pkgs;
 
   fsrx = callPackage ../tools/misc/fsrx { };
 
-  fsuae = callPackage ../applications/emulators/fs-uae { };
-
-  fsuae-launcher = libsForQt5.callPackage ../applications/emulators/fs-uae/launcher.nix { };
-
   fuc = callPackage ../tools/misc/fuc { };
 
   fuse-emulator = callPackage ../applications/emulators/fuse-emulator { };
@@ -4030,15 +4026,25 @@ with pkgs;
 
   go-audit = callPackage ../tools/system/go-audit { };
 
-  gopass = callPackage ../tools/security/gopass { };
+  gopass = callPackage ../tools/security/gopass {
+    buildGoModule = buildGo122Module;
+  };
 
-  gopass-hibp = callPackage ../tools/security/gopass/hibp.nix { };
+  gopass-hibp = callPackage ../tools/security/gopass/hibp.nix {
+    buildGoModule = buildGo122Module;
+  };
 
-  gopass-jsonapi = callPackage ../tools/security/gopass/jsonapi.nix { };
+  gopass-jsonapi = callPackage ../tools/security/gopass/jsonapi.nix {
+    buildGoModule = buildGo122Module;
+  };
 
-  git-credential-gopass = callPackage ../tools/security/gopass/git-credential.nix { };
+  git-credential-gopass = callPackage ../tools/security/gopass/git-credential.nix {
+    buildGoModule = buildGo122Module;
+  };
 
-  gopass-summon-provider = callPackage ../tools/security/gopass/summon.nix { };
+  gopass-summon-provider = callPackage ../tools/security/gopass/summon.nix {
+    buildGoModule = buildGo122Module;
+  };
 
   gosh = callPackage ../tools/security/gosh { };
 
@@ -6773,7 +6779,9 @@ with pkgs;
 
   cicero-tui = callPackage ../tools/misc/cicero-tui { };
 
-  cilium-cli = callPackage ../applications/networking/cluster/cilium { };
+  cilium-cli = callPackage ../applications/networking/cluster/cilium {
+    buildGoModule = buildGo122Module;
+  };
 
   cjdns = callPackage ../tools/networking/cjdns { };
   cjdns-tools = callPackage ../tools/admin/cjdns-tools { };
@@ -20806,8 +20814,6 @@ with pkgs;
 
   directfb = callPackage ../development/libraries/directfb { };
 
-  discordchatexporter-cli = callPackage ../tools/backup/discordchatexporter-cli { };
-
   discord-gamesdk = callPackage ../development/libraries/discord-gamesdk { };
 
   discord-rpc = callPackage ../development/libraries/discord-rpc {
@@ -25003,8 +25009,6 @@ with pkgs;
 
   thrift = callPackage ../development/libraries/thrift { };
 
-  thrift-0_10 = callPackage ../development/libraries/thrift/0.10.nix { };
-
   tidyp = callPackage ../development/libraries/tidyp { };
 
   tidal-hifi = callPackage ../applications/audio/tidal-hifi { };
@@ -26003,7 +26007,7 @@ with pkgs;
 
   dspam = callPackage ../servers/mail/dspam { };
 
-  engelsystem = callPackage ../servers/web-apps/engelsystem { php = php81; };
+  engelsystem = callPackage ../servers/web-apps/engelsystem { };
 
   envoy = callPackage ../servers/http/envoy {
     go = go_1_20;
@@ -26507,8 +26511,6 @@ with pkgs;
 
   sympa = callPackage ../servers/mail/sympa { };
 
-  syncstorage-rs = callPackage ../servers/syncstorage-rs { };
-
   system-sendmail = lowPrio (callPackage ../servers/mail/system-sendmail { });
 
   # PulseAudio daemons
@@ -26747,8 +26749,8 @@ with pkgs;
     postgresql_15_jit
     postgresql_16_jit
   ;
-  postgresql = postgresql_15.override { this = postgresql; };
-  postgresql_jit = postgresql_15_jit.override { this = postgresql_jit; };
+  postgresql = postgresql_15;
+  postgresql_jit = postgresql_15_jit;
   postgresqlPackages = recurseIntoAttrs postgresql.pkgs;
   postgresqlJitPackages = recurseIntoAttrs postgresql_jit.pkgs;
   postgresql12Packages = recurseIntoAttrs postgresql_12.pkgs;
@@ -27022,10 +27024,6 @@ with pkgs;
   stone = callPackage ../servers/stone { };
 
   storm = callPackage ../servers/computing/storm { };
-
-  surrealdb = callPackage ../servers/nosql/surrealdb {
-    inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
-  };
 
   switcheroo-control = callPackage ../os-specific/linux/switcheroo-control { };
 
@@ -27352,8 +27350,6 @@ with pkgs;
   cm-rgb = python3Packages.callPackage ../tools/system/cm-rgb { };
 
   cpustat = callPackage ../os-specific/linux/cpustat { };
-
-  cockroachdb = callPackage ../servers/sql/cockroachdb { };
 
   cockroachdb-bin = callPackage ../servers/sql/cockroachdb/cockroachdb-bin.nix { };
 
@@ -32545,10 +32541,8 @@ with pkgs;
   jwm-settings-manager = callPackage ../applications/window-managers/jwm/jwm-settings-manager.nix { };
 
   inherit (callPackage ../applications/networking/cluster/k3s {
-    buildGoModule = buildGo120Module;
-  }) k3s_1_26 k3s_1_27 k3s_1_28;
-  inherit (callPackage ../applications/networking/cluster/k3s { }) k3s_1_29;
-
+    buildGoModule = buildGo121Module;
+  }) k3s_1_26 k3s_1_27 k3s_1_28 k3s_1_29;
   k3s = k3s_1_29;
 
   k3sup = callPackage ../applications/networking/cluster/k3sup { };
@@ -35330,10 +35324,6 @@ with pkgs;
 
   tijolo = callPackage ../applications/editors/tijolo { };
 
-  tilemaker = callPackage ../applications/misc/tilemaker {
-    protobuf = protobuf_21;
-  };
-
   timbreid = callPackage ../applications/audio/pd-plugins/timbreid {
     fftw = fftwSinglePrec;
   };
@@ -37065,7 +37055,7 @@ with pkgs;
 
   chiaki = libsForQt5.callPackage ../games/chiaki { };
 
-  chiaki4deck = libsForQt5.callPackage ../games/chiaki4deck { };
+  chiaki4deck = qt6Packages.callPackage ../games/chiaki4deck { };
 
   chromium-bsu = callPackage ../games/chromium-bsu { };
 
@@ -37974,8 +37964,6 @@ with pkgs;
   ultrastardx = callPackage ../games/ultrastardx { };
 
   umoria = callPackage ../games/umoria { };
-
-  unciv = callPackage ../games/unciv { };
 
   unnethack = callPackage ../games/unnethack { };
 
@@ -40600,10 +40588,6 @@ with pkgs;
   };
 
   sct = callPackage ../tools/X11/sct { };
-
-  scylladb = callPackage ../servers/scylladb {
-    thrift = thrift-0_10;
-  };
 
   seafile-server = callPackage ../servers/seafile-server { };
 
