@@ -1,25 +1,26 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, cmake
-, obs-studio
-, onnxruntime
-, opencv
-}:
+{ lib, stdenv, fetchFromGitHub, cmake, obs-studio, onnxruntime, opencv, pkgs, curl }:
 
 stdenv.mkDerivation rec {
   pname = "obs-backgroundremoval";
-  version = "0.5.16";
+  version = "1.1.13";
 
   src = fetchFromGitHub {
     owner = "royshil";
     repo = "obs-backgroundremoval";
-    rev = "v${version}";
-    hash = "sha256-E+pm/Ma6dZTYlX3DpB49ynTETsRS2TBqgHSCijl/Txc=";
+    rev = "${version}";
+    hash = "sha256-QoC9/HkwOXMoFNvcOxQkGCLLAJmsja801LKCNT9O9T0=";
   };
 
+  passthru.obsWrapperArguments =
+    let
+      obsBackgroundRemovalHook = package: "--prefix LD_PRELOAD : ${lib.getLib package}/lib/libonnxruntime.so.1.16.3";
+    in
+    builtins.map obsBackgroundRemovalHook [
+      onnxruntime
+    ];
+
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ obs-studio onnxruntime opencv ];
+  buildInputs = [ obs-studio onnxruntime opencv curl];
 
   dontWrapQtApps = true;
 
@@ -27,19 +28,17 @@ stdenv.mkDerivation rec {
     "-DUSE_SYSTEM_ONNXRUNTIME=ON"
     "-DUSE_SYSTEM_OPENCV=ON"
   ];
-
-  postInstall = ''
-    mkdir $out/lib $out/share
-    mv $out/obs-plugins/64bit $out/lib/obs-plugins
-    rm -rf $out/obs-plugins
-    mv $out/data $out/share/obs
+  postPatch = ''
+    substituteInPlace CMakeLists.txt \
+        --replace-fail "Onnxruntime" "onnxruntime"
   '';
 
   meta = with lib; {
-    description = "OBS plugin to replace the background in portrait images and video";
+    description =
+      "OBS plugin to replace the background in portrait images and video";
     homepage = "https://github.com/royshil/obs-backgroundremoval";
-    maintainers = with maintainers; [ zahrun ];
+    maintainers = with maintainers; [ zahrun aaron-nall ];
     license = licenses.mit;
-    platforms = [ "x86_64-linux" "i686-linux" ];
+    platforms = [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
   };
 }
