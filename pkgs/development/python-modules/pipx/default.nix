@@ -63,6 +63,8 @@ buildPythonPackage rec {
     "script_from_internet"
     "ensure_null_pythonpath"
     # disable tests, which require internet connection
+    "test_interpreter"
+    "test_list"
     "install"
     "inject"
     "ensure_null_pythonpath"
