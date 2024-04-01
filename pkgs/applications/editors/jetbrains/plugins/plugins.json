@@ -89,8 +89,8 @@
         "phpstorm"
       ],
       "builds": {
-        "233.15026.12": "https://plugins.jetbrains.com/files/7219/509039/Symfony_Plugin-2023.1.266.zip",
-        "233.15026.9": "https://plugins.jetbrains.com/files/7219/509039/Symfony_Plugin-2023.1.266.zip"
+        "233.15026.12": "https://plugins.jetbrains.com/files/7219/514919/Symfony_Plugin-2023.1.267.zip",
+        "233.15026.9": "https://plugins.jetbrains.com/files/7219/514919/Symfony_Plugin-2023.1.267.zip"
       },
       "name": "symfony-support"
     },
@@ -644,17 +644,17 @@
         "webstorm"
       ],
       "builds": {
-        "233.13135.979": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.14015.137": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.14475.31": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.14475.66": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.14475.74": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.15026.12": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.15026.13": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.15026.14": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.15026.15": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.15026.17": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip",
-        "233.15026.9": "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip"
+        "233.13135.979": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.14015.137": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.14475.31": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.14475.66": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.14475.74": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.15026.12": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.15026.13": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.15026.14": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.15026.15": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.15026.17": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip",
+        "233.15026.9": "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip"
       },
       "name": "github-copilot"
     },
@@ -887,7 +887,7 @@
     "https://plugins.jetbrains.com/files/14371/480879/OpenCV_Image_Viewer-4.0.1-signed.zip": "sha256-23K5V+4HNz+jRwUGegk9bqtwM4S2fZgUrCLGyyRYFk8=",
     "https://plugins.jetbrains.com/files/14823/492277/fullLine-233.14732.zip": "sha256-jGipGDeD3hLAWeOEHZgi0olKzuZbzvj1TqEAD4ySZJc=",
     "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip": "sha256-mztZWmQhGIuebUzj+FUOgYMMYMNRaiOi5TooNMInSdA=",
-    "https://plugins.jetbrains.com/files/17718/499821/github-copilot-intellij-1.5.0.5148.zip": "sha256-/JuPSqFG6VyaDj2IQAYK3Lz7/FQWppfxxXUGuGQggrY=",
+    "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip": "sha256-lep8ZUOjbV0tsfO/yEWJiHWtwm639zxpc/7L9rCKSsU=",
     "https://plugins.jetbrains.com/files/18444/165585/NetBeans6.5Keymap.zip": "sha256-KrzZTKZMQqoEMw+vDUv2jjs0EX0leaPBkU8H/ecq/oI=",
     "https://plugins.jetbrains.com/files/21673/454518/bigdatatools-zeppelin-233.13135.65.zip": "sha256-ikKcePCBXueFMRGghMt+F2yBsSlAxZ/KcbfUjQeQiz0=",
     "https://plugins.jetbrains.com/files/21700/456894/bigdatatools-plugin-spark-233.13135.103.zip": "sha256-Vw0ctjGll94tUxhALKqrhelFt4rvOP37PvnuEhPfHvU=",
@@ -904,7 +904,7 @@
     "https://plugins.jetbrains.com/files/22407/507547/intellij-rust-233.24475.74.zip": "sha256-Ftyamb+ToQNrBxWrxC68e4nyCrX9cQ8ozcauJkmenmE=",
     "https://plugins.jetbrains.com/files/631/509008/python-233.15026.9.zip": "sha256-Lb0TzM7vr8IZmahGMzdS9GXaxzrCKwG3NFspInRlOG0=",
     "https://plugins.jetbrains.com/files/6981/509027/ini-233.15026.15.zip": "sha256-6sTD+OFO/yA7m5o0XqoJKLcQ4zAFro7Iy7WNPfA49xM=",
-    "https://plugins.jetbrains.com/files/7219/509039/Symfony_Plugin-2023.1.266.zip": "sha256-p0ixoyTuZ2N5LCkraLpG2JDRQsKc1JcJaj6CElkZvOY=",
+    "https://plugins.jetbrains.com/files/7219/514919/Symfony_Plugin-2023.1.267.zip": "sha256-zhnoxJgJJDgSnLdaNRrqS767YuvAzm8sXzhz9e2G0+8=",
     "https://plugins.jetbrains.com/files/7320/507957/PHP_Annotations-10.0.0.zip": "sha256-JIZ6Iq3sOcAm8fBXnjRrG9dqCZuD/WajyVmn1JjYMBA=",
     "https://plugins.jetbrains.com/files/7322/474341/python-ce-233.14015.106.zip": "sha256-yd70cSA/Icn5YlH4Q79cIWGFJ6huYUBDKk6vCIYa3DU=",
     "https://plugins.jetbrains.com/files/7322/484110/python-ce-233.14475.9.zip": "sha256-YMB/ewCKE1F/JXI8iau9pKkv9D5D9a8OiTVukkzTocA=",
