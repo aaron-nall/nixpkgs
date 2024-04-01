@@ -103,6 +103,7 @@ in
         };
       };
       prldnd = {
+        enable = false;
         description = "Parallels Drag And Drop Tool";
         wantedBy = [ "graphical-session.target" ];
         path = [ prl-tools ];
@@ -112,6 +113,7 @@ in
         };
       };
       prlcp = {
+        enable = false;
         description = "Parallels Copy Paste Tool";
         wantedBy = [ "graphical-session.target" ];
         path = [ prl-tools ];
@@ -122,6 +124,7 @@ in
         };
       };
       prlsga = {
+        enable = false;
         description = "Parallels Shared Guest Applications Tool";
         wantedBy = [ "graphical-session.target" ];
         path = [ prl-tools ];
@@ -131,6 +134,7 @@ in
         };
       };
       prlshprof = {
+        enable = false;
         description = "Parallels Shared Profile Tool";
         wantedBy = [ "graphical-session.target" ];
         path = [ prl-tools ];
