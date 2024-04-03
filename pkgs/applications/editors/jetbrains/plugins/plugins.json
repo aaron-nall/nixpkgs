@@ -17,17 +17,17 @@
         "webstorm"
       ],
       "builds": {
-        "233.13135.979": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.14015.137": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.14475.31": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.14475.66": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.14475.74": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.15026.12": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.15026.13": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.15026.14": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.15026.15": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.15026.17": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip",
-        "233.15026.9": "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip"
+        "233.13135.979": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.14015.137": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.14475.31": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.14475.66": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.14475.74": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.15026.12": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.15026.13": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.15026.14": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.15026.15": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.15026.17": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip",
+        "233.15026.9": "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip"
       },
       "name": "ideavim"
     },
@@ -886,7 +886,7 @@
     "https://plugins.jetbrains.com/files/14059/82616/darcula-pitch-black.jar": "sha256-eXInfAqY3yEZRXCAuv3KGldM1pNKEioNwPB0rIGgJFw=",
     "https://plugins.jetbrains.com/files/14371/480879/OpenCV_Image_Viewer-4.0.1-signed.zip": "sha256-23K5V+4HNz+jRwUGegk9bqtwM4S2fZgUrCLGyyRYFk8=",
     "https://plugins.jetbrains.com/files/14823/492277/fullLine-233.14732.zip": "sha256-jGipGDeD3hLAWeOEHZgi0olKzuZbzvj1TqEAD4ySZJc=",
-    "https://plugins.jetbrains.com/files/164/507552/IdeaVim-2.10.1-signed.zip": "sha256-mztZWmQhGIuebUzj+FUOgYMMYMNRaiOi5TooNMInSdA=",
+    "https://plugins.jetbrains.com/files/164/515255/IdeaVim-2.10.2-signed.zip": "sha256-FP6th8J3ymfTrwvJ3Ms7fsNPh3f9ab5ZVg5yPpKV/rY=",
     "https://plugins.jetbrains.com/files/17718/512366/github-copilot-intellij-1.5.1.5285.zip": "sha256-lep8ZUOjbV0tsfO/yEWJiHWtwm639zxpc/7L9rCKSsU=",
     "https://plugins.jetbrains.com/files/18444/165585/NetBeans6.5Keymap.zip": "sha256-KrzZTKZMQqoEMw+vDUv2jjs0EX0leaPBkU8H/ecq/oI=",
     "https://plugins.jetbrains.com/files/21673/454518/bigdatatools-zeppelin-233.13135.65.zip": "sha256-ikKcePCBXueFMRGghMt+F2yBsSlAxZ/KcbfUjQeQiz0=",
