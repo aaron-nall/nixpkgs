@@ -8,7 +8,7 @@ let
 in
 {
   options.services.greetd = {
-    enable = mkEnableOption (lib.mdDoc "greetd");
+    enable = mkEnableOption (lib.mdDoc "greetd, a minimal and flexible login manager daemon");
 
     package = mkPackageOption pkgs [ "greetd" "greetd" ] { };
 
@@ -59,6 +59,9 @@ in
 
     # This prevents nixos-rebuild from killing greetd by activating getty again
     systemd.services."autovt@${tty}".enable = false;
+
+    # Enable desktop session data
+    services.displayManager.enable = lib.mkDefault true;
 
     systemd.services.greetd = {
       aliases = [ "display-manager.service" ];

@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2024.4.0";
+  version = "2024.4.2";
   components = {
     "3_day_blinds" = ps: with ps; [
     ];
@@ -570,7 +570,8 @@
     "brel_home" = ps: with ps; [
     ];
     "bring" = ps: with ps; [
-    ]; # missing inputs: bring-api
+      bring-api
+    ];
     "broadlink" = ps: with ps; [
       broadlink
     ];
@@ -4981,6 +4982,7 @@
       psutil-home-assistant
       sqlalchemy
       systembridgeconnector
+      systembridgemodels
       zeroconf
     ];
     "system_health" = ps: with ps; [
@@ -6003,6 +6005,7 @@
     "bond"
     "bosch_shc"
     "braviatv"
+    "bring"
     "broadlink"
     "brother"
     "brottsplatskartan"
