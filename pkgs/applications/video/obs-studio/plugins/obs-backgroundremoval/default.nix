@@ -5,8 +5,9 @@ stdenv.mkDerivation rec {
   version = "1.1.13";
 
   src = fetchFromGitHub {
-    owner = "royshil";
+    owner = "occ-ai";
     repo = "obs-backgroundremoval";
+<<<<<<< HEAD
     rev = "${version}";
     hash = "sha256-QoC9/HkwOXMoFNvcOxQkGCLLAJmsja801LKCNT9O9T0=";
   };
@@ -25,8 +26,11 @@ stdenv.mkDerivation rec {
   dontWrapQtApps = true;
 
   cmakeFlags = [
+    "--preset linux-x86_64"
+    "-DCMAKE_MODULE_PATH:PATH=${src}/cmake"
     "-DUSE_SYSTEM_ONNXRUNTIME=ON"
     "-DUSE_SYSTEM_OPENCV=ON"
+    "-DDISABLE_ONNXRUNTIME_GPU=ON"
   ];
   postPatch = ''
     substituteInPlace CMakeLists.txt \
