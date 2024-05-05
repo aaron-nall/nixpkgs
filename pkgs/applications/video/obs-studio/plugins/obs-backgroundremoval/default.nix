@@ -7,7 +7,6 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "occ-ai";
     repo = "obs-backgroundremoval";
-<<<<<<< HEAD
     rev = "${version}";
     hash = "sha256-QoC9/HkwOXMoFNvcOxQkGCLLAJmsja801LKCNT9O9T0=";
   };
