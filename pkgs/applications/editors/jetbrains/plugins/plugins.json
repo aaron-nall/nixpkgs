@@ -36,7 +36,7 @@
         "idea-ultimate"
       ],
       "builds": {
-        "241.15989.150": "https://plugins.jetbrains.com/files/631/530361/python-241.15989.150.zip"
+        "241.15989.150": "https://plugins.jetbrains.com/files/631/530669/python-241.15989.166.zip"
       },
       "name": "python"
     },
@@ -924,7 +924,7 @@
     "https://plugins.jetbrains.com/files/21713/513557/bigdatatools-core-241.14494.240.zip": "sha256-+af6lMjbh52TR0lNCI83wSIG/KHacGVBU7GyWg5zwrw=",
     "https://plugins.jetbrains.com/files/21713/530334/bigdatatools-core-241.15989.150.zip": "sha256-tnS1NT7n+H9at58z6UiEXxV5GoA2QzJ2KK52OrBrGVo=",
     "https://plugins.jetbrains.com/files/22407/526873/intellij-rust-241.25989.101.zip": "sha256-v1r14zx591Vr8JmQxfysQ/aO8HDYCorwnnOEKDIfx+Y=",
-    "https://plugins.jetbrains.com/files/631/530361/python-241.15989.150.zip": "sha256-9mxRh9TayCZFubpAOpBou4gYfs5rz7+u38wZvlLNQaU=",
+    "https://plugins.jetbrains.com/files/631/530669/python-241.15989.166.zip": "sha256-1mdv8xJfaa8Ln4/jsnyQyd6C19C8++XYpOBDU67SDGc=",
     "https://plugins.jetbrains.com/files/6981/513562/ini-241.14494.240.zip": "sha256-QC42nC7mEE3X1cmKj8jkwzpDJzX7ZoOPEd9y6i8IuvM=",
     "https://plugins.jetbrains.com/files/6981/527916/ini-241.15989.113.zip": "sha256-JgFoDqeMxdg3E9ZWHVsJGSygKAifFCEa9S+RdLFkLBI=",
     "https://plugins.jetbrains.com/files/7219/529388/Symfony_Plugin-2023.1.271.zip": "sha256-vboCsF7e4Kx56hkKEXkFO9A/ElxNAITi4cIFwLcXxCU=",
