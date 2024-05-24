@@ -1354,6 +1354,7 @@
   ./services/web-apps/engelsystem.nix
   ./services/web-apps/ethercalc.nix
   ./services/web-apps/firefly-iii.nix
+  ./services/web-apps/flarum.nix
   ./services/web-apps/fluidd.nix
   ./services/web-apps/freshrss.nix
   ./services/web-apps/galene.nix
@@ -1425,6 +1426,7 @@
   ./services/web-apps/selfoss.nix
   ./services/web-apps/shiori.nix
   ./services/web-apps/silverbullet.nix
+  ./services/web-apps/simplesamlphp.nix
   ./services/web-apps/slskd.nix
   ./services/web-apps/snipe-it.nix
   ./services/web-apps/sogo.nix

@@ -820,8 +820,6 @@ with pkgs;
 
   oletools = with python3.pkgs; toPythonApplication oletools;
 
-  ollama = callPackage ../tools/misc/ollama {  };
-
   ots = callPackage ../tools/security/ots {  };
 
   credential-detector = callPackage ../tools/security/credential-detector { };
@@ -1146,7 +1144,7 @@ with pkgs;
             fetchurl = stdenv.fetchurlBoot;
           };
         });
-        perl = buildPackages.perl.override { fetchurl = stdenv.fetchurlBoot; };
+        perl = buildPackages.perl.override { inherit zlib; fetchurl = stdenv.fetchurlBoot; };
         openssl = buildPackages.openssl.override {
           fetchurl = stdenv.fetchurlBoot;
           buildPackages = {
@@ -1154,7 +1152,7 @@ with pkgs;
               fetchurl = stdenv.fetchurlBoot;
               inherit perl;
               xz = buildPackages.xz.override { fetchurl = stdenv.fetchurlBoot; };
-              gmp = null;
+              gmpSupport = false;
               aclSupport = false;
               attrSupport = false;
             };
@@ -1973,7 +1971,9 @@ with pkgs;
 
   npm-check-updates = callPackage ../tools/package-management/npm-check-updates { };
 
-  ntpd-rs = callPackage ../tools/networking/ntpd-rs { };
+  ntpd-rs = darwin.apple_sdk_11_0.callPackage ../tools/networking/ntpd-rs {
+    inherit (darwin.apple_sdk_11_0.frameworks) Security;
+  };
 
   ocs-url = libsForQt5.callPackage ../tools/misc/ocs-url { };
 
@@ -2331,8 +2331,6 @@ with pkgs;
   git-cola = callPackage ../applications/version-management/git-cola { };
 
   git-crecord = callPackage ../applications/version-management/git-crecord { };
-
-  git-credential-1password = callPackage ../applications/version-management/git-credential-1password { };
 
   git-credential-keepassxc = darwin.apple_sdk_11_0.callPackage ../applications/version-management/git-credential-keepassxc {
     inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation;
@@ -4685,8 +4683,6 @@ with pkgs;
 
   shotman = callPackage ../tools/wayland/shotman { };
 
-  slurp = callPackage ../tools/wayland/slurp { };
-
   sway-unwrapped = callPackage ../by-name/sw/sway-unwrapped/package.nix {
     wlroots = wlroots_0_17;
   };
@@ -4703,9 +4699,7 @@ with pkgs;
 
   wayland-utils = callPackage ../tools/wayland/wayland-utils { };
 
-  wayland-proxy-virtwl = callPackage ../tools/wayland/wayland-proxy-virtwl {
-    ocamlPackages = ocaml-ng.ocamlPackages_5_0;
-  };
+  wayland-proxy-virtwl = callPackage ../tools/wayland/wayland-proxy-virtwl { };
 
   waylogout = callPackage ../tools/wayland/waylogout { };
 
@@ -5383,6 +5377,8 @@ with pkgs;
   ghidra = darwin.apple_sdk_11_0.callPackage ../tools/security/ghidra/build.nix {
     protobuf = protobuf_21;
   };
+
+  ghidra-extensions = recurseIntoAttrs (callPackage ../tools/security/ghidra/extensions.nix { });
 
   ghidra-bin = callPackage ../tools/security/ghidra { };
 
@@ -7188,8 +7184,6 @@ with pkgs;
   dav1d = callPackage ../development/libraries/dav1d { };
 
   davfs2 = callPackage ../tools/filesystems/davfs2 { };
-
-  dbeaver = callPackage ../applications/misc/dbeaver { };
 
   dbench = callPackage ../development/tools/misc/dbench { };
 
@@ -12900,8 +12894,6 @@ with pkgs;
 
   sigal = callPackage ../applications/misc/sigal { };
 
-  sigi = callPackage ../applications/misc/sigi { };
-
   sigil = libsForQt5.callPackage ../applications/editors/sigil { };
 
   signalbackup-tools = darwin.apple_sdk_11_0.callPackage
@@ -14404,8 +14396,6 @@ with pkgs;
   unclutter = callPackage ../tools/misc/unclutter { };
 
   unclutter-xfixes = callPackage ../tools/misc/unclutter-xfixes { };
-
-  unbound = callPackage ../tools/networking/unbound { };
 
   unbound-with-systemd = unbound.override {
     withSystemd = true;
@@ -17182,7 +17172,7 @@ with pkgs;
   };
 
   inherit (beam.interpreters)
-    erlang erlang_27-rc3 erlang_26 erlang_25 erlang_24
+    erlang erlang_27 erlang_26 erlang_25 erlang_24
     erlang_odbc erlang_javac erlang_odbc_javac
     elixir elixir_1_16 elixir_1_15 elixir_1_14 elixir_1_13 elixir_1_12 elixir_1_11 elixir_1_10
     elixir-ls;
@@ -20442,9 +20432,7 @@ with pkgs;
 
   cypress = callPackage ../development/web/cypress { };
 
-  cyrus_sasl = callPackage ../development/libraries/cyrus-sasl {
-    libkrb5 = if stdenv.isFreeBSD then heimdal else libkrb5;
-  };
+  cyrus_sasl = callPackage ../development/libraries/cyrus-sasl { };
 
   cyrus-sasl-xoauth2 = callPackage ../development/libraries/cyrus-sasl-xoauth2 { };
 
@@ -20904,7 +20892,7 @@ with pkgs;
 
   ghcid = haskellPackages.ghcid.bin;
 
-  gr-framework = libsForQt5.callPackage ../development/libraries/gr-framework {
+  gr-framework = callPackage ../by-name/gr/gr-framework/package.nix {
     stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
   };
 
@@ -22485,6 +22473,8 @@ with pkgs;
       lib.getBin stdenv.cc.libc
     else if stdenv.hostPlatform.isDarwin then
       lib.getBin libiconv
+    else if stdenv.hostPlatform.isFreeBSD then
+      lib.getBin freebsd.iconv
     else
       lib.getBin libiconvReal;
 
@@ -24560,8 +24550,6 @@ with pkgs;
   svxlink = libsForQt5.callPackage ../applications/radio/svxlink { };
 
   swiftclient = with python3Packages; toPythonApplication python-swiftclient;
-
-  sword = callPackage ../development/libraries/sword { };
 
   biblesync = callPackage ../development/libraries/biblesync { };
 
@@ -27332,6 +27320,8 @@ with pkgs;
   linux_6_6_hardened = linuxKernel.kernels.linux_6_6_hardened;
   linuxPackages_6_8_hardened = linuxKernel.packages.linux_6_8_hardened;
   linux_6_8_hardened = linuxKernel.kernels.linux_6_8_hardened;
+  linuxPackages_6_9_hardened = linuxKernel.packages.linux_6_9_hardened;
+  linux_6_9_hardened = linuxKernel.kernels.linux_6_9_hardened;
 
   # GNU Linux-libre kernels
   linuxPackages-libre = linuxKernel.packages.linux_libre;
@@ -27663,6 +27653,7 @@ with pkgs;
 
   odin = callPackage ../development/compilers/odin {
     inherit (pkgs.darwin.apple_sdk_11_0) MacOSX-SDK;
+    inherit (pkgs.darwin.apple_sdk_11_0.frameworks) Security;
   };
 
   odp-dpdk = callPackage ../os-specific/linux/odp-dpdk { };
@@ -28677,7 +28668,7 @@ with pkgs;
 
   kawkab-mono-font = callPackage ../data/fonts/kawkab-mono { };
 
-  kde-rounded-corners = libsForQt5.callPackage ../data/themes/kwin-decorations/kde-rounded-corners { };
+  kde-rounded-corners = kdePackages.callPackage ../data/themes/kwin-decorations/kde-rounded-corners { };
 
   khmeros = callPackage ../data/fonts/khmeros { };
 
@@ -31160,8 +31151,6 @@ with pkgs;
 
   freeoffice = callPackage ../applications/office/softmaker/freeoffice.nix { };
 
-  freeplane = callPackage ../applications/misc/freeplane { };
-
   freepv = callPackage ../applications/graphics/freepv { };
 
   xfontsel = callPackage ../applications/misc/xfontsel { };
@@ -32430,56 +32419,49 @@ with pkgs;
 
   libreoffice-unwrapped = libreoffice.unwrapped;
 
-  libreoffice-args = {
-    inherit (perlPackages) ArchiveZip IOCompress;
-    zip = zip.override { enableNLS = false; };
-    fontsConf = makeFontsConf {
-      fontDirectories = [
-        carlito dejavu_fonts
-        freefont_ttf xorg.fontmiscmisc
-        liberation_ttf_v1
-        liberation_ttf_v2
-      ];
-    };
-    clucene_core = clucene_core_2;
-    lcms = lcms2;
-    harfbuzz = harfbuzz.override {
-      withIcu = true; withGraphite2 = true;
-    };
-    boost = boost179;
-  };
-
   libreoffice-qt-fresh = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
-    unwrapped = libsForQt5.callPackage ../applications/office/libreoffice
-      (libreoffice-args // {
-        kdeIntegration = true;
-        variant = "fresh";
-      });
+    unwrapped = libsForQt5.callPackage ../applications/office/libreoffice {
+      kdeIntegration = true;
+      variant = "fresh";
+    };
   });
   libreoffice-qt-fresh-unwrapped = libreoffice-qt-fresh.unwrapped;
 
   libreoffice-qt-still = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
-    unwrapped = libsForQt5.callPackage ../applications/office/libreoffice
-      (libreoffice-args // {
-        kdeIntegration = true;
-        variant = "still";
-      });
+    unwrapped = libsForQt5.callPackage ../applications/office/libreoffice {
+      kdeIntegration = true;
+      variant = "still";
+    };
   });
   libreoffice-qt-still-unwrapped = libreoffice-qt-still.unwrapped;
 
+  libreoffice-qt6-fresh = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
+    unwrapped = kdePackages.callPackage ../applications/office/libreoffice {
+      kdeIntegration = true;
+      variant = "fresh";
+    };
+  });
+  libreoffice-qt6-fresh-unwrapped = libreoffice-qt6-fresh.unwrapped;
+
+  libreoffice-qt6-still = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
+    unwrapped = kdePackages.callPackage ../applications/office/libreoffice {
+      kdeIntegration = true;
+      variant = "still";
+    };
+  });
+  libreoffice-qt6-still-unwrapped = libreoffice-qt-still.unwrapped;
+
   libreoffice-fresh = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
-    unwrapped = callPackage ../applications/office/libreoffice
-      (libreoffice-args // {
-        variant = "fresh";
-      });
+    unwrapped = callPackage ../applications/office/libreoffice {
+      variant = "fresh";
+    };
   });
   libreoffice-fresh-unwrapped = libreoffice-fresh.unwrapped;
 
   libreoffice-still = lowPrio (callPackage ../applications/office/libreoffice/wrapper.nix {
-    unwrapped = callPackage ../applications/office/libreoffice
-      (libreoffice-args // {
-        variant = "still";
-      });
+    unwrapped = callPackage ../applications/office/libreoffice {
+      variant = "still";
+    };
   });
   libreoffice-still-unwrapped = libreoffice-still.unwrapped;
 
@@ -36274,8 +36256,6 @@ with pkgs;
   augustus = callPackage ../games/augustus { };
 
   ballerburg = callPackage ../games/ballerburg { } ;
-
-  blockattack = callPackage ../games/blockattack { } ;
 
   colobot = callPackage ../games/colobot { };
 
