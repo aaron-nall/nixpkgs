@@ -43,7 +43,6 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchurl {
     url = "https://download.parallels.com/desktop/v${lib.versions.major finalAttrs.version}/${finalAttrs.version}/ParallelsDesktop-${finalAttrs.version}.dmg";
     hash = "sha256-c/MrWUvwY/Z38uOBbetJSVkZlwkdzFhw6wpk1L0BuQs=";
-
   };
 
   hardeningDisable = [ "pic" "format" ];
