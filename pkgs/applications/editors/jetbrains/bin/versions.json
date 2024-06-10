@@ -106,7 +106,7 @@
       "build_number": "241.17011.76"
     },
     "rust-rover": {
-      "update-channel": "RustRover EAP",
+      "update-channel": "RustRover RELEASE",
       "url-template": "https://download.jetbrains.com/rustrover/RustRover-{version}.tar.gz",
       "version": "2024.1 EAP",
       "sha256": "73bec7f1406c953ac154ae7652701681a60fadfa673235b18bbfb9d545f8353f",
@@ -125,9 +125,9 @@
       "update-channel": "Writerside EAP",
       "url-template": "https://download.jetbrains.com/writerside/writerside-{version}.tar.gz",
       "version": "2024.1 EAP",
-      "sha256": "24da41b0eb4ca23652d05ecbccc5d2c792c3d49a964d8b6eb765ccd9cbcc7c3d",
-      "url": "https://download.jetbrains.com/writerside/writerside-241.15989.11.tar.gz",
-      "build_number": "241.15989.11"
+      "sha256": "efb69c46ab8f3a461c42d5b6d4f7e843d01f584ae97030110d36d71de453e320",
+      "url": "https://download.jetbrains.com/writerside/writerside-241.16003.85.tar.gz",
+      "build_number": "241.16003.85"
     }
   },
   "aarch64-linux": {
@@ -237,7 +237,7 @@
       "build_number": "241.17011.76"
     },
     "rust-rover": {
-      "update-channel": "RustRover EAP",
+      "update-channel": "RustRover RELEASE",
       "url-template": "https://download.jetbrains.com/rustrover/RustRover-{version}-aarch64.tar.gz",
       "version": "2024.1 EAP",
       "sha256": "8d4a9cc01465d2c54267b967a928cd814720f08b826a40d9be895cfcfa57c423",
@@ -256,9 +256,9 @@
       "update-channel": "Writerside EAP",
       "url-template": "https://download.jetbrains.com/writerside/writerside-{version}-aarch64.tar.gz",
       "version": "2024.1 EAP",
-      "sha256": "9b72a2422f2cb1f2bb2034ef4eaf130ee7a9062cf99ba53b8df62cc4e1c76c42",
-      "url": "https://download.jetbrains.com/writerside/writerside-241.15989.11-aarch64.tar.gz",
-      "build_number": "241.15989.11"
+      "sha256": "d9f764a8fcbdf13e67f1f152f790c38602792b07fdfd7a8935d320ed8ae68921",
+      "url": "https://download.jetbrains.com/writerside/writerside-241.16003.85-aarch64.tar.gz",
+      "build_number": "241.16003.85"
     }
   },
   "x86_64-darwin": {
@@ -368,7 +368,7 @@
       "build_number": "241.17011.76"
     },
     "rust-rover": {
-      "update-channel": "RustRover EAP",
+      "update-channel": "RustRover RELEASE",
       "url-template": "https://download.jetbrains.com/rustrover/RustRover-{version}.dmg",
       "version": "2024.1 EAP",
       "sha256": "86b832fd27e27262aeba5233cdf33178fda39b4968195c868c3d2096907bb1ba",
@@ -387,9 +387,9 @@
       "update-channel": "Writerside EAP",
       "url-template": "https://download.jetbrains.com/writerside/writerside-{version}.dmg",
       "version": "2024.1 EAP",
-      "sha256": "36ec40a47989be9ab263f4b9f182fcc5b155f3fd068174e7539adc55f892b230",
-      "url": "https://download.jetbrains.com/writerside/writerside-241.15989.11.dmg",
-      "build_number": "241.15989.11"
+      "sha256": "a9ad84d95ad86b38f35bec25032235b907e19ddf3ef696404f4341650a7eb7b1",
+      "url": "https://download.jetbrains.com/writerside/writerside-241.16003.85.dmg",
+      "build_number": "241.16003.85"
     }
   },
   "aarch64-darwin": {
@@ -499,7 +499,7 @@
       "build_number": "241.17011.76"
     },
     "rust-rover": {
-      "update-channel": "RustRover EAP",
+      "update-channel": "RustRover RELEASE",
       "url-template": "https://download.jetbrains.com/rustrover/RustRover-{version}-aarch64.dmg",
       "version": "2024.1 EAP",
       "sha256": "05196688c43f9727acd5ffe735e431aa339dbe7e96e705470e50e40c877ebc9d",
@@ -518,9 +518,9 @@
       "update-channel": "Writerside EAP",
       "url-template": "https://download.jetbrains.com/writerside/writerside-{version}-aarch64.dmg",
       "version": "2024.1 EAP",
-      "sha256": "624f9f2fb0ed7c7d42484e42c16b9b0ec0c542ad8187d81b11ef1d38576c589d",
-      "url": "https://download.jetbrains.com/writerside/writerside-241.15989.11-aarch64.dmg",
-      "build_number": "241.15989.11"
+      "sha256": "d3bb0079046570dbfa5175b388e091b1567c024a7ec8587e7c8e5389cf1bd721",
+      "url": "https://download.jetbrains.com/writerside/writerside-241.16003.85-aarch64.dmg",
+      "build_number": "241.16003.85"
     }
   }
 }

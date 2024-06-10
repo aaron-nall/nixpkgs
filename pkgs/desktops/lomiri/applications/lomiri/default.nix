@@ -117,6 +117,7 @@ stdenv.mkDerivation (finalAttrs: {
     })
 
     ./9901-lomiri-Disable-Wizard.patch
+    ./9902-lomiri-Check-NIXOS_XKB_LAYOUTS.patch
   ];
 
   postPatch = ''
@@ -207,7 +208,7 @@ stdenv.mkDerivation (finalAttrs: {
     lomiri-settings-components
     lomiri-thumbnailer
     qtmultimedia
-    telephony-service
+    # telephony-service # currently broken: https://github.com/NixOS/nixpkgs/pull/314043
   ];
 
   nativeCheckInputs = [

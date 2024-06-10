@@ -59,7 +59,9 @@ mapAliases ({
   AusweisApp2 = ausweisapp; # Added 2023-11-08
   a4term = a4; # Added 2023-10-06
   acorn = throw "acorn has been removed as the upstream project was archived"; # Added 2024-04-27
+  acousticbrainz-client = throw "acousticbrainz-client has been removed since the AcousticBrainz project has been shut down"; # Added 2024-06-04
   adtool = throw "'adtool' has been removed, as it was broken and unmaintained";
+  adom = throw "'adom' has been removed, as it was broken and unmaintained"; # added 2024-05-09
   advcpmv = throw "'advcpmv' has been removed, as it is not being actively maintained and break recent coreutils."; # Added 2024-03-29
   aether = throw "aether has been removed from nixpkgs; upstream unmaintained, security issues"; # Added 2023-10-03
   afl = throw "afl has been removed as the upstream project was archived. Consider using 'aflplusplus'"; # Added 2024-04-21
@@ -131,6 +133,7 @@ mapAliases ({
   boost174 = throw "boost174 has been deprecated in favor of the latest version"; # Added 2023-06-08
   boost17x = throw "boost17x has been deprecated in favor of the latest version"; # Added 2023-07-13
   boost18x = throw "boost18x has been deprecated in favor of the latest version"; # Added 2023-07-13
+  boost_process = throw "boost_process has been removed as it is included in regular boost"; # Added 2024-05-01
   bpb = throw "bpb has been removed as it is unmaintained and not compatible with recent Rust versions"; # Added 2024-04-30
   bpftool = bpftools; # Added 2021-05-03
   bpytop = throw "bpytop has been deprecated by btop"; # Added 2023-02-16
@@ -249,6 +252,7 @@ mapAliases ({
   dep = throw "'dep' has been removed, because it is deprecated and archived in favor of Go modules"; # Added 2023-12-26
   devserver = throw "'devserver' has been removed in favor of 'miniserve' or other alternatives"; # Added 2023-01-13
   dfeet = throw "'dfeet' has been removed because it is archived upstream. Please use 'd-spy' instead"; # Added 2024-03-07
+  dgsh = throw "'dgsh' has been removed, as it was broken and unmaintained"; # added 2024-05-09
   dhcp = throw "dhcp (ISC DHCP) has been removed from nixpkgs, because it reached its end of life"; # Added 2023-04-04
   dibbler = throw "dibbler was removed because it is not maintained anymore"; # Added 2024-05-14
   dnnl = oneDNN; # Added 2020-04-22
@@ -387,6 +391,7 @@ mapAliases ({
   fractal-next = fractal; # added 2023-11-25
   framework-system-tools = framework-tool; # added 2023-12-09
   fritzprofiles = throw "fritzprofiles was removed from nixpkgs, because it was removed as dependency of home-assistant for which it was pacakged."; # added 2024-01-05
+  frostwire = throw "frostwire was removed, as it was broken due to reproducibility issues, use `frostwire-bin` package instead."; # added 2024-05-17
   fuse2fs = if stdenv.isLinux then e2fsprogs.fuse2fs else null; # Added 2022-03-27 preserve, reason: convenience, arch has a package named fuse2fs too.
   futuresql = libsForQt5.futuresql; # added 2023-11-11
   fx_cast_bridge = fx-cast-bridge; # added 2023-07-26
@@ -590,6 +595,8 @@ mapAliases ({
   julia_18 = throw "'julia_18' has been removed from nixpkgs as it has reached end of life"; # Added 2024-01-11
   julia_18-bin = throw "'julia_18-bin' has been removed from nixpkgs as it has reached end of life"; # Added 2024-01-11
 
+  jush = throw "jush has been removed from nixpkgs because it is unmaintained"; # Added 2024-05-28
+
   ### K ###
 
   k3s_1_24 = throw "'k3s_1_24' has been removed from nixpkgs as it has reached end of life"; # Added 2024-03-14
@@ -632,6 +639,7 @@ mapAliases ({
   ledger_agent = ledger-agent; # Added 2024-01-07
   lfs = dysk; # Added 2023-07-03
   llvmPackages_rocm = throw "'llvmPackages_rocm' has been replaced with 'rocmPackages.llvm'"; # Added 2023-10-08
+  libAfterImage = throw "'libAfterImage' has been removed from nixpkgs, as it's no longer in development for a long time"; # Added 2024-06-01
   libayatana-indicator-gtk3 = libayatana-indicator; # Added 2022-10-18
   libayatana-appindicator-gtk3 = libayatana-appindicator; # Added 2022-10-18
   libbencodetools = bencodetools; # Added 2022-07-30
@@ -918,6 +926,7 @@ mapAliases ({
   noto-fonts-emoji = noto-fonts-color-emoji; # Added 2023-09-09
   noto-fonts-extra = noto-fonts; # Added 2023-04-08
   NSPlist = nsplist; # Added 2024-01-05
+  nushellFull = lib.warn "`nushellFull` has has been replaced by `nushell` as it's features no longer exist" nushell; # Added 2024-05-30
   nvidia-thrust = throw "nvidia-thrust has been removed because the project was deprecated; use cudaPackages.cuda_cccl";
   nvtop = lib.warn "nvtop has been renamed to nvtopPackages.full" nvtopPackages.full; # Added 2024-02-25
   nvtop-amd = lib.warn "nvtop-amd has been renamed to nvtopPackages.amd" nvtopPackages.amd; # Added 2024-02-25
@@ -986,6 +995,7 @@ mapAliases ({
   percona-xtrabackup_8_0 = percona-xtrabackup_lts; # Added 2024-05-07
   perldevel = throw "'perldevel' has been dropped due to lack of updates in nixpkgs and lack of consistent support for devel versions by 'perl-cross' releases, use 'perl' instead";
   perldevelPackages = perldevel;
+  petrinizer = throw "'petrinizer' has been removed, as it was broken and unmaintained"; # added 2024-05-09
   pgadmin = pgadmin4;
   pharo-spur64 = pharo; # Added 2022-08-03
   phodav_2_0 = throw "'phodav_2_0' has been renamed to/replaced by 'phodav'"; # Added 2023-02-21
@@ -1047,6 +1057,7 @@ mapAliases ({
   prismlauncher-qt5 = throw "'prismlauncher-qt5' has been removed from nixpkgs. Please use 'prismlauncher'"; # Added 2024-04-20
   prismlauncher-qt5-unwrapped = throw "'prismlauncher-qt5-unwrapped' has been removed from nixpkgs. Please use 'prismlauncher-unwrapped'"; # Added 2024-04-20
   privacyidea = throw "privacyidea has been removed from nixpkgs"; # Added 2023-10-31
+  probe-rs = probe-rs-tools; # Added 2024-05-23
   probe-rs-cli = throw "probe-rs-cli is now part of the probe-rs package"; # Added 2023-07-03
   processing3 = throw "'processing3' has been renamed to/replaced by 'processing'"; # Converted to throw 2023-09-10
   prometheus-dmarc-exporter = dmarc-metrics-exporter; # added 2022-05-31
@@ -1346,6 +1357,7 @@ mapAliases ({
   volatility = throw "'volatility' has been removed, as it was broken and unmaintained"; # Added 2023-12-10
 
   ### W ###
+  wakatime = wakatime-cli; # 2024-05-30
   waybar-hyprland = throw "waybar-hyprland has been removed: hyprland support is now built into waybar by default."; # Added 2023-08-21
   wayfireApplications-unwrapped = throw ''
     'wayfireApplications-unwrapped.wayfire' has been renamed to/replaced by 'wayfire'
@@ -1392,6 +1404,8 @@ mapAliases ({
   yacc = bison; # moved from top-level 2021-03-14
   yafaray-core = libyafaray; # Added 2022-09-23
   yarn2nix-moretea-openssl_1_1 = throw "'yarn2nix-moretea-openssl_1_1' has been removed."; # Added 2023-02-04
+  yi = throw "'yi' has been removed, as it was broken and unmaintained"; # added 2024-05-09
+  yrd = throw "'yrd' has been removed, as it was broken and unmaintained"; # added 2024-05-27
   ytmdesktop = throw "ytmdesktop was removed because upstream vanished"; # added 2024-03-24
   yubikey-manager4 = throw "yubikey-manager4 has been removed, since it is no longer required by yubikey-manager-qt. Please update to yubikey-manager."; # Added 2024-01-14
   yuzu-ea = throw "yuzu-ea has been removed from nixpkgs, as it has been taken down upstream"; # Added 2024-03-04
