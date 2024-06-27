@@ -40,6 +40,37 @@
       },
       "name": "python"
     },
+    "2162": {
+      "compatible": [
+        "clion",
+        "datagrip",
+        "goland",
+        "idea-community",
+        "idea-ultimate",
+        "mps",
+        "phpstorm",
+        "pycharm-community",
+        "pycharm-professional",
+        "rider",
+        "ruby-mine",
+        "rust-rover",
+        "webstorm"
+      ],
+      "builds": {
+        "233.13135.1068": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.15989.206": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17011.166": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17890.1": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17890.13": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17890.14": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17890.15": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17890.19": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17890.21": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17890.24": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip",
+        "241.17890.8": "https://plugins.jetbrains.com/files/2162/542984/StringManipulation-9.14.1.zip"
+      },
+      "name": "string-manipulation"
+    },
     "6954": {
       "compatible": [
         "clion",
@@ -101,6 +132,37 @@
         "241.18034.63": "https://plugins.jetbrains.com/files/6981/560226/ini-241.18034.69.zip"
       },
       "name": "ini"
+    },
+    "7086": {
+      "compatible": [
+        "clion",
+        "datagrip",
+        "goland",
+        "idea-community",
+        "idea-ultimate",
+        "mps",
+        "phpstorm",
+        "pycharm-community",
+        "pycharm-professional",
+        "rider",
+        "ruby-mine",
+        "rust-rover",
+        "webstorm"
+      ],
+      "builds": {
+        "233.13135.1068": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.15989.206": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17011.166": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17890.1": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17890.13": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17890.14": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17890.15": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17890.19": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17890.21": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17890.24": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip",
+        "241.17890.8": "https://plugins.jetbrains.com/files/7086/518678/AceJump.zip"
+      },
+      "name": "acejump"
     },
     "7219": {
       "compatible": [
