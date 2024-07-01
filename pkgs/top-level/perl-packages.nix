@@ -13021,6 +13021,19 @@ with self; {
     };
   };
 
+  IOSocketSocks = buildPerlPackage {
+    pname = "IO-Socket-Socks";
+    version = "0.74";
+    src = fetchurl {
+      url = "mirror://cpan/authors/id/O/OL/OLEG/IO-Socket-Socks-0.74.tar.gz";
+      hash = "sha256-N/Bxos9LqPCQoil8ZIK3osUJ61Lc1s5dgDXU7ixoJLE=";
+    };
+    meta = {
+      description = "Provides a way to create socks client or server both 4 and 5 version";
+      license = lib.licenses.free;
+    };
+  };
+
   IOSocketTimeout = buildPerlModule {
     pname = "IO-Socket-Timeout";
     version = "0.32";
@@ -15919,10 +15932,10 @@ with self; {
 
   Minion = buildPerlPackage {
     pname = "Minion";
-    version = "10.25";
+    version = "10.30";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/S/SR/SRI/Minion-10.25.tar.gz";
-      hash = "sha256-C+CoN1N2iJ2gRgRpY4TAz5iyYh0mUNnrAwf25LlAra0=";
+      url = "mirror://cpan/authors/id/S/SR/SRI/Minion-10.30.tar.gz";
+      hash = "sha256-twS9ZuxK8cAzlGifAsCsBIDr0GzpzKFykVAbkgLG7Rw=";
     };
     propagatedBuildInputs = [ Mojolicious YAMLLibYAML ];
     meta = {
@@ -23970,12 +23983,12 @@ with self; {
 
   SysVirt = buildPerlModule rec {
     pname = "Sys-Virt";
-    version = "10.0.0";
+    version = "10.2.0";
     src = fetchFromGitLab {
       owner = "libvirt";
       repo = "libvirt-perl";
       rev = "v${version}";
-      hash = "sha256-FK2SaerA/GB0ZAg/QXG9Ig1Cvpg6v9lh1sKPjYU52M8=";
+      hash = "sha256-xpgZeXk9QefqbBMsvcMh/Cg/XFGEiVi3FbU/jBbSIr0=";
     };
     nativeBuildInputs = [ pkgs.pkg-config ];
     buildInputs = [ pkgs.libvirt CPANChanges TestPod TestPodCoverage XMLXPath ];
@@ -29122,10 +29135,10 @@ with self; {
 
   YAMLPP = buildPerlPackage {
     pname = "YAML-PP";
-    version = "0.036";
+    version = "0.38.0";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/T/TI/TINITA/YAML-PP-0.036.tar.gz";
-      hash = "sha256-yLTlBYSt+S73Vz9rsB1u1Y5iF2MsV0J7cnTPp8pG/Bs=";
+      url = "mirror://cpan/authors/id/T/TI/TINITA/YAML-PP-v0.38.0.tar.gz";
+      hash = "sha256-qBlGXFL2o0EEmjlCdCwI4E8olLKmZILkOn9AfOELTqA=";
     };
     buildInputs = [ TestDeep TestWarn ];
     meta = {
