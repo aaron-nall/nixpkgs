@@ -87,6 +87,7 @@
   glib
 , gobject-introspection
 , wrapGAppsHook3
+, writeText
 , # sniprun dependencies
   bashInteractive
 , coreutils
@@ -408,12 +409,12 @@
 
   codesnap-nvim =
     let
-      version = "1.4.1";
+      version = "1.5.2";
       src = fetchFromGitHub {
         owner = "mistricky";
         repo = "codesnap.nvim";
         rev = "refs/tags/v${version}";
-        hash = "sha256-KttvOfMieO+lBEgvkrBztWg7pUm/gFxYaTVXAQv15IM=";
+        hash = "sha256-r6/2pbojfzBdMoZHphE6BX5cEiCAmOWurPBptI6jjcw=";
       };
       codesnap-lib = rustPlatform.buildRustPackage {
         pname = "codesnap-lib";
@@ -421,7 +422,7 @@
 
         sourceRoot = "${src.name}/generator";
 
-        cargoHash = "sha256-IZtWfyDZEaFSuj3uXBhBuGPi4IN1Dwt0ZkMSoxAum5c=";
+        cargoHash = "sha256-E8EywpyRSoknXSebnvqP178ZgAIahJeD5siD46KM/Mc=";
 
         nativeBuildInputs = [
           pkg-config
@@ -1482,12 +1483,19 @@
           install -Dt $out/bin ftplugin/evinceSync.py
         '';
       };
+      # the vim plugin expects evinceSync.py to be a python file, but it is a C wrapper
+      pythonWrapper = writeText "evinceSync-wrapper.py" /* python */ ''
+        #!${python3}/bin/python3
+        import os
+        import sys
+        os.execv("${svedbackend}/bin/evinceSync.py", sys.argv)
+      '';
     in
     super.sved.overrideAttrs {
       preferLocalBuild = true;
       postPatch = ''
         rm ftplugin/evinceSync.py
-        ln -s ${svedbackend}/bin/evinceSync.py ftplugin/evinceSync.py
+        install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
       '';
       meta = {
         description = "synctex support between vim/neovim and evince";
