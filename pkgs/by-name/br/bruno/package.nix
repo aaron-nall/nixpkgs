@@ -28,13 +28,13 @@ let
 in
 buildNpmPackage' rec {
   pname = "bruno";
-  version = "1.20.4";
+  version = "1.21.0";
 
   src = fetchFromGitHub {
     owner = "usebruno";
     repo = "bruno";
     rev = "v${version}";
-    hash = "sha256-0YWkZdfthHpX4Duc0kP9/QBBTQk1Jx0Hrjd/aoRUIKU=";
+    hash = "sha256-k8pRSAQpE//qH7XRjSTXmxundgK5dmOQTRKP9D2RUdY=";
 
     postFetch = ''
       ${lib.getExe npm-lockfile-fix} $out/package-lock.json
@@ -156,9 +156,9 @@ buildNpmPackage' rec {
   meta = with lib; {
     description = "Open-source IDE For exploring and testing APIs";
     homepage = "https://www.usebruno.com";
-    inherit (electron.meta) platforms;
+    platforms = platforms.linux ++ platforms.darwin;
     license = licenses.mit;
-    maintainers = with maintainers; [ gepbird kashw2 lucasew mattpolzin water-sucks ];
+    maintainers = with maintainers; [ gepbird kashw2 lucasew mattpolzin water-sucks redyf ];
     mainProgram = "bruno";
   };
 }
