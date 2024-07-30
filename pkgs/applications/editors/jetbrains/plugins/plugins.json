@@ -40,6 +40,16 @@
       },
       "name": "python"
     },
+    "1347": {
+      "compatible": [
+        "idea-community",
+        "idea-ultimate"
+      ],
+      "builds": {
+        "241.18034.62": "https://plugins.jetbrains.com/files/1347/560035/scala-intellij-bin-2024.1.24.zip"
+      },
+      "name": "scala"
+    },
     "2162": {
       "compatible": [
         "clion",
