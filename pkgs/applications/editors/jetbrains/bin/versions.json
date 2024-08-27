@@ -1,7 +1,7 @@
 {
   "x86_64-linux": {
     "aqua": {
-      "update-channel": "Aqua EAP licensing:EAP",
+      "update-channel": "Aqua RELEASE",
       "url-template": "https://download.jetbrains.com/aqua/aqua-{version}.tar.gz",
       "version": "2023.3 Public Preview",
       "sha256": "7fbc5565208acd0f4428c10823778c0d2bfd192e4cfce74ee2788477dacad5e0",
@@ -140,7 +140,7 @@
   },
   "aarch64-linux": {
     "aqua": {
-      "update-channel": "Aqua EAP licensing:EAP",
+      "update-channel": "Aqua RELEASE",
       "url-template": "https://download.jetbrains.com/aqua/aqua-{version}-aarch64.tar.gz",
       "version": "2023.3 Public Preview",
       "sha256": "ec54c362cfc0d0f803a48baa761f894d844639cfb438d0f2e0d2b394fdb0bb00",
@@ -279,7 +279,7 @@
   },
   "x86_64-darwin": {
     "aqua": {
-      "update-channel": "Aqua EAP licensing:EAP",
+      "update-channel": "Aqua RELEASE",
       "url-template": "https://download.jetbrains.com/aqua/aqua-{version}.dmg",
       "version": "2023.3 Public Preview",
       "sha256": "a3edf2990be14b7baefb747b0c1c6c092054183ca1acf492933a59f96a9553a7",
@@ -418,7 +418,7 @@
   },
   "aarch64-darwin": {
     "aqua": {
-      "update-channel": "Aqua EAP licensing:EAP",
+      "update-channel": "Aqua RELEASE",
       "url-template": "https://download.jetbrains.com/aqua/aqua-{version}-aarch64.dmg",
       "version": "2023.3 Public Preview",
       "sha256": "231b5f90de71c0e43c6cc87a1a1fb3b739ecff65f2bc5cb9505218b536f4d0ce",
