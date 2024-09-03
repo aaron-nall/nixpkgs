@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2024.8.2";
+  version = "2024.8.3";
   components = {
     "3_day_blinds" = ps: with ps; [
     ];
@@ -1821,13 +1821,14 @@
       habluetooth
       hassil
       home-assistant-intents
+      idasen-ha
       ifaddr
       mutagen
       pymicro-vad
       pyserial
       pyudev
       zeroconf
-    ]; # missing inputs: idasen-ha
+    ];
     "idteck_prox" = ps: with ps; [
     ]; # missing inputs: rfk101py
     "ifttt" = ps: with ps; [
@@ -5164,6 +5165,7 @@
     "iaqualink"
     "ibeacon"
     "icloud"
+    "idasen_desk"
     "ifttt"
     "ign_sismologia"
     "image"

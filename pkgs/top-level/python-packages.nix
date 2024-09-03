@@ -253,8 +253,6 @@ self: super: with self; {
 
   aiohttp-fast-zlib = callPackage ../development/python-modules/aiohttp-fast-zlib { };
 
-  aiohttp-isal = callPackage ../development/python-modules/aiohttp-isal { };
-
   aiohttp-jinja2 = callPackage ../development/python-modules/aiohttp-jinja2 { };
 
   aiohttp-middlewares = callPackage ../development/python-modules/aiohttp-middlewares { };
@@ -2719,6 +2717,8 @@ self: super: with self; {
 
   curio = callPackage ../development/python-modules/curio { };
 
+  curio-compat = callPackage ../development/python-modules/curio-compat { };
+
   curlify = callPackage ../development/python-modules/curlify { };
 
   curl-cffi = callPackage ../development/python-modules/curl-cffi { };
@@ -4512,7 +4512,7 @@ self: super: with self; {
 
   flask-session-captcha = callPackage ../development/python-modules/flask-session-captcha { };
 
-  flask-security-too = callPackage ../development/python-modules/flask-security-too { };
+  flask-security = callPackage ../development/python-modules/flask-security { };
 
   flask-silk = callPackage ../development/python-modules/flask-silk { };
 
@@ -4523,6 +4523,8 @@ self: super: with self; {
   flask-sockets = callPackage ../development/python-modules/flask-sockets { };
 
   flask-sqlalchemy = callPackage ../development/python-modules/flask-sqlalchemy { };
+
+  flask-sqlalchemy-lite = callPackage ../development/python-modules/flask-sqlalchemy-lite { };
 
   flask-sslify = callPackage ../development/python-modules/flask-sslify { };
 
@@ -4650,14 +4652,6 @@ self: super: with self; {
   };
 
   oelint-parser = callPackage ../development/python-modules/oelint-parser { };
-
-  openllm = callPackage ../development/python-modules/openllm {
-    triton = self.triton-cuda;
-  };
-
-  openllm-client = callPackage ../development/python-modules/openllm-client { };
-
-  openllm-core = callPackage ../development/python-modules/openllm-core { };
 
   openstep-parser = callPackage ../development/python-modules/openstep-parser { };
 
@@ -5891,6 +5885,8 @@ self: super: with self; {
   ics = callPackage ../development/python-modules/ics { };
 
   idasen = callPackage ../development/python-modules/idasen { };
+
+  idasen-ha = callPackage ../development/python-modules/idasen-ha { };
 
   icoextract = toPythonModule (pkgs.icoextract.override {
     python3Packages = self;
@@ -9388,6 +9384,8 @@ self: super: with self; {
 
   py-expression-eval = callPackage ../development/python-modules/py-expression-eval { };
 
+  py-machineid = callPackage ../development/python-modules/py-machineid { };
+
   py-opensonic = callPackage ../development/python-modules/py-opensonic { };
 
   py-radix-sr = callPackage ../development/python-modules/py-radix-sr { };
@@ -9753,7 +9751,9 @@ self: super: with self; {
 
   oslo-serialization = callPackage ../development/python-modules/oslo-serialization { };
 
-  oslo-utils = callPackage ../development/python-modules/oslo-utils { };
+  oslo-utils = callPackage ../development/python-modules/oslo-utils {
+    qemu = pkgs.qemu;
+  };
 
   oslotest = callPackage ../development/python-modules/oslotest { };
 
@@ -10108,6 +10108,8 @@ self: super: with self; {
   phone-modem = callPackage ../development/python-modules/phone-modem { };
 
   phonenumbers = callPackage ../development/python-modules/phonenumbers { };
+
+  phonenumberslite = callPackage ../development/python-modules/phonenumberslite { };
 
   photutils = callPackage ../development/python-modules/photutils { };
 
@@ -10949,6 +10951,8 @@ self: super: with self; {
   psycopg2 = callPackage ../development/python-modules/psycopg2 { };
 
   psycopg2cffi = callPackage ../development/python-modules/psycopg2cffi { };
+
+  psycopg2-binary = callPackage ../development/python-modules/psycopg2-binary { };
 
   psygnal = callPackage ../development/python-modules/psygnal { };
 
@@ -11907,6 +11911,10 @@ self: super: with self; {
   pympler = callPackage ../development/python-modules/pympler { };
 
   pymsgbox = callPackage ../development/python-modules/pymsgbox { };
+
+  pymssql = callPackage ../development/python-modules/pymssql {
+    krb5-c = pkgs.krb5;
+  };
 
   pymsteams = callPackage ../development/python-modules/pymsteams { };
 
@@ -12892,6 +12900,8 @@ self: super: with self; {
 
   python-engineio = callPackage ../development/python-modules/python-engineio { };
 
+  python-engineio-v3 = callPackage ../development/python-modules/python-engineio-v3 { };
+
   python-etcd = callPackage ../development/python-modules/python-etcd { };
 
   python-ev3dev2 = callPackage ../development/python-modules/python-ev3dev2 { };
@@ -13087,6 +13097,8 @@ self: super: with self; {
   };
 
   python-socketio = callPackage ../development/python-modules/python-socketio { };
+
+  python-socketio-v4 = callPackage ../development/python-modules/python-socketio-v4 { };
 
   python-socks = callPackage ../development/python-modules/python-socks { };
 
@@ -13649,6 +13661,10 @@ self: super: with self; {
   referencing = callPackage ../development/python-modules/referencing { };
 
   refery = callPackage ../development/python-modules/refery { };
+
+  reflex = callPackage ../development/python-modules/reflex { };
+
+  reflex-hosting-cli = callPackage ../development/python-modules/reflex-hosting-cli { };
 
   reflink = callPackage ../development/python-modules/reflink { };
 
@@ -14804,6 +14820,8 @@ self: super: with self; {
 
   sparse = callPackage ../development/python-modules/sparse { };
 
+  sparsezoo = callPackage ../development/python-modules/sparsezoo { };
+
   spatial-image = callPackage ../development/python-modules/spatial-image { };
 
   spatialmath-python = callPackage ../development/python-modules/spatialmath-python { };
@@ -15018,6 +15036,8 @@ self: super: with self; {
 
   sqlalchemy-continuum = callPackage ../development/python-modules/sqlalchemy-continuum { };
 
+  sqlalchemy-file = callPackage ../development/python-modules/sqlalchemy-file { };
+
   sqlalchemy-i18n = callPackage ../development/python-modules/sqlalchemy-i18n { };
 
   sqlalchemy-jsonfield = callPackage ../development/python-modules/sqlalchemy-jsonfield { };
@@ -15106,6 +15126,8 @@ self: super: with self; {
 
   starlette = callPackage ../development/python-modules/starlette { };
 
+  starlette-admin = callPackage ../development/python-modules/starlette-admin { };
+
   starlette-context = callPackage ../development/python-modules/starlette-context { };
 
   starlette-wtf = callPackage ../development/python-modules/starlette-wtf { };
@@ -15177,6 +15199,8 @@ self: super: with self; {
   strawberry-graphql = callPackage ../development/python-modules/strawberry-graphql { };
 
   strct = callPackage ../development/python-modules/strct { };
+
+  streamcontroller-plugin-tools = callPackage ../development/python-modules/streamcontroller-plugin-tools { };
 
   streamdeck = callPackage ../development/python-modules/streamdeck { };
 
@@ -15257,6 +15281,8 @@ self: super: with self; {
   sudachipy = callPackage ../development/python-modules/sudachipy { };
 
   suds = callPackage ../development/python-modules/suds { };
+
+  suds-community = callPackage ../development/python-modules/suds-community { };
 
   sumo = callPackage ../development/python-modules/sumo { };
 
@@ -17171,6 +17197,8 @@ self: super: with self; {
   urwid-readline = callPackage ../development/python-modules/urwid-readline { };
 
   usb-devices = callPackage ../development/python-modules/usb-devices { };
+
+  usb-monitor = callPackage ../development/python-modules/usb-monitor { };
 
   usbrelay-py = callPackage ../os-specific/linux/usbrelay/python.nix { };
 
