@@ -26,6 +26,12 @@ buildGoModule rec {
 
   vendorHash = "sha256-TiI02M6k1zN/iWJntOfc9EY5xFo3ESOtdDSumxYmSU0=";
 
+  patches = [
+    ./nopi.patch
+  ];
+  prePatch = ''
+    rm -r ./internal/staticsources/rpicamera
+  '';
   postPatch = ''
     cp ${hlsJs} internal/servers/hls/hls.min.js
   '';

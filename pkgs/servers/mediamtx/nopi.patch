@@ -1,0 +1,23 @@
+--- a/internal/core/static_source_handler.go	2024-09-12 14:11:30.256001095 -0400
++++ b/internal/core/static_source_handler.go	2024-09-12 14:11:58.552001109 -0400
+@@ -11,7 +11,6 @@
+ 	"github.com/bluenviron/mediamtx/internal/defs"
+ 	"github.com/bluenviron/mediamtx/internal/logger"
+ 	hlssource "github.com/bluenviron/mediamtx/internal/staticsources/hls"
+-	rpicamerasource "github.com/bluenviron/mediamtx/internal/staticsources/rpicamera"
+ 	rtmpsource "github.com/bluenviron/mediamtx/internal/staticsources/rtmp"
+ 	rtspsource "github.com/bluenviron/mediamtx/internal/staticsources/rtsp"
+ 	srtsource "github.com/bluenviron/mediamtx/internal/staticsources/srt"
+@@ -115,12 +114,6 @@
+ 			Parent:      s,
+ 		}
+ 
+-	case s.conf.Source == "rpiCamera":
+-		s.instance = &rpicamerasource.Source{
+-			LogLevel: s.logLevel,
+-			Parent:   s,
+-		}
+-
+ 	default:
+ 		panic("should not happen")
+ 	}
