@@ -68,29 +68,29 @@ in
       };
     };
 
-    systemd.services.prlfsmountd = mkIf config.hardware.parallels.autoMountShares {
-      description = "Parallels Guest File System Sharing Tool";
-      wantedBy = [ "multi-user.target" ];
-      path = [ prl-tools ];
-      serviceConfig = rec {
-        ExecStart = "${prl-tools}/sbin/prlfsmountd ${PIDFile}";
-        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /media";
-        ExecStopPost = "${prl-tools}/sbin/prlfsmountd -u";
-        PIDFile = "/run/prlfsmountd.pid";
-        WorkingDirectory = "${prl-tools}/bin";
-      };
-    };
+    # systemd.services.prlfsmountd = mkIf config.hardware.parallels.autoMountShares {
+    #   description = "Parallels Guest File System Sharing Tool";
+    #   wantedBy = [ "multi-user.target" ];
+    #   path = [ prl-tools ];
+    #   serviceConfig = rec {
+    #     ExecStart = "${prl-tools}/sbin/prlfsmountd ${PIDFile}";
+    #     ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /media";
+    #     ExecStopPost = "${prl-tools}/sbin/prlfsmountd -u";
+    #     PIDFile = "/run/prlfsmountd.pid";
+    #     WorkingDirectory = "${prl-tools}/bin";
+    #   };
+    # };
 
-    systemd.services.prlshprint = {
-      description = "Parallels Printing Tool";
-      wantedBy = [ "multi-user.target" ];
-      bindsTo = [ "cups.service" ];
-      path = [ prl-tools ];
-      serviceConfig = {
-        ExecStart = "${prl-tools}/bin/prlshprint";
-        WorkingDirectory = "${prl-tools}/bin";
-      };
-    };
+    # systemd.services.prlshprint = {
+    #   description = "Parallels Printing Tool";
+    #   wantedBy = [ "multi-user.target" ];
+    #   bindsTo = [ "cups.service" ];
+    #   path = [ prl-tools ];
+    #   serviceConfig = {
+    #     ExecStart = "${prl-tools}/bin/prlshprint";
+    #     WorkingDirectory = "${prl-tools}/bin";
+    #   };
+    # };
 
     systemd.user.services = {
       prlcc = {
