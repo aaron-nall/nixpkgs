@@ -19,7 +19,6 @@
 , netcat
 , timetrap
 , util-linux
-, fuse
 }:
 
 let
