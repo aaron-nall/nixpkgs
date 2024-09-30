@@ -8,6 +8,10 @@ in
 
 {
 
+  imports = [
+    (mkRemovedOptionModule [ "hardware" "parallels" "autoMountShares" ] "Shares are always automatically mounted since Parallels Desktop 20.")
+  ];
+
   options = {
     hardware.parallels = {
 
@@ -17,17 +21,6 @@ in
         description = ''
           This enables Parallels Tools for Linux guests, along with provided
           video, mouse and other hardware drivers.
-        '';
-      };
-
-      autoMountShares = mkOption {
-        type = types.bool;
-        default = true;
-        description = ''
-          Control prlfsmountd service. When this service is running, shares can not be manually
-          mounted through `mount -t prl_fs ...` as this service will remount and trample any set options.
-          Recommended to enable for simple file sharing, but extended share use such as for code should
-          disable this to manually mount shares.
         '';
       };
 

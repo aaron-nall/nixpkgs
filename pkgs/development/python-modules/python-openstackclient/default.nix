@@ -5,7 +5,9 @@
   ddt,
   openstackdocstheme,
   osc-lib,
+  osc-placement,
   pbr,
+  python-aodhclient,
   python-barbicanclient,
   python-cinderclient,
   python-designateclient,
@@ -17,6 +19,9 @@
   python-mistralclient,
   python-neutronclient,
   python-openstackclient,
+  python-watcherclient,
+  python-zaqarclient,
+  python-zunclient,
   requests-mock,
   requests,
   setuptools,
@@ -28,12 +33,12 @@
 
 buildPythonPackage rec {
   pname = "python-openstackclient";
-  version = "7.0.0";
+  version = "7.1.0";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-1HDjWYySnZI/12j9+Gb1G9NKkb+xfrcMoTY/q7aL0uA=";
+    hash = "sha256-nv/CmcVpQiC65Fd3jmzZsjrqG8O/zQTjoE+NhjhaBVQ=";
   };
 
   build-system = [
@@ -71,6 +76,8 @@ buildPythonPackage rec {
     optional-dependencies = {
       # See https://github.com/openstack/python-openstackclient/blob/master/doc/source/contributor/plugins.rst
       cli-plugins = [
+        osc-placement
+        python-aodhclient
         python-barbicanclient
         python-designateclient
         python-heatclient
@@ -79,6 +86,9 @@ buildPythonPackage rec {
         python-manilaclient
         python-mistralclient
         python-neutronclient
+        python-watcherclient
+        python-zaqarclient
+        python-zunclient
       ];
     };
     tests.version = testers.testVersion {
