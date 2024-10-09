@@ -55,16 +55,16 @@ let
 in
 rustPlatform.buildRustPackage rec {
   pname = "rio";
-  version = "0.1.15";
+  version = "0.1.16";
 
   src = fetchFromGitHub {
     owner = "raphamorim";
     repo = "rio";
     rev = "v${version}";
-    hash = "sha256-aLqWhRaNqi7gMDxBITLU/Tj//h7RURycLSZXOOq83As=";
+    hash = "sha256-3OtPlaYkTPIF98CyaXWGZ/1msWHFdscqZXVviu0/O/o=";
   };
 
-  cargoHash = "sha256-4nqJbz2vauO4jRuUSDjBV1pVrAJMhIP4+eUwS1+GecU=";
+  cargoHash = "sha256-VpS3prTmAbWTd+gwAOA0BXso4gkcAFuhMZh8Go3Dlao=";
 
   nativeBuildInputs = [
     ncurses
@@ -87,7 +87,7 @@ rustPlatform.buildRustPackage rec {
 
   checkFlags = [
     # Fail to run in sandbox environment.
-    "--skip=screen::context::test"
+    "--skip=sys::unix::eventedfd::EventedFd"
   ];
 
   postInstall = ''
@@ -112,8 +112,13 @@ rustPlatform.buildRustPackage rec {
     };
 
     tests = {
-      test = nixosTests.terminal-emulators.rio;
       version = testers.testVersion { package = rio; };
+    } // lib.optionalAttrs stdenv.buildPlatform.isLinux {
+      # FIXME: Restrict test execution inside nixosTests for Linux devices as ofborg
+      # 'passthru.tests' nixosTests are failing on Darwin architectures.
+      #
+      # Ref: https://github.com/NixOS/nixpkgs/issues/345825
+      test = nixosTests.terminal-emulators.rio;
     };
   };
 
@@ -125,11 +130,5 @@ rustPlatform.buildRustPackage rec {
     platforms = lib.platforms.unix;
     changelog = "https://github.com/raphamorim/rio/blob/v${version}/docs/docs/releases.md";
     mainProgram = "rio";
-    # ---- corcovado/src/sys/unix/eventedfd.rs - sys::unix::eventedfd::EventedFd (line 31) stdout ----
-    # Test executable failed (exit status: 101).
-    # stderr:
-    # thread 'main' panicked at corcovado/src/sys/unix/eventedfd.rs:24:16:
-    # called `Result::unwrap()` on an `Err` value: Os { code: 1, kind: PermissionDenied, message: "Operation not permitted" }
-    broken = stdenv.hostPlatform.isDarwin;
   };
 }
