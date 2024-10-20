@@ -191,8 +191,8 @@
         "phpstorm"
       ],
       "builds": {
-        "242.23339.11": "https://plugins.jetbrains.com/files/7320/596012/PHP_Annotations-11.0.3.zip",
-        "242.23339.16": "https://plugins.jetbrains.com/files/7320/596012/PHP_Annotations-11.0.3.zip"
+        "242.23339.11": "https://plugins.jetbrains.com/files/7320/619870/PHP_Annotations-11.1.0.zip",
+        "242.23339.16": "https://plugins.jetbrains.com/files/7320/619870/PHP_Annotations-11.1.0.zip"
       },
       "name": "php-annotations"
     },
@@ -1081,7 +1081,7 @@
     "https://plugins.jetbrains.com/files/6981/609355/ini-242.23339.18.zip": "sha256-WucgAKBoKxnZvRfN2g8in8LjOOKAtECEN0sGcz28j4c=",
     "https://plugins.jetbrains.com/files/7086/610924/AceJump.zip": "sha256-Qp24juITBXEF5izdzayWq28Ioy4/kgT0qz6snZ0dND0=",
     "https://plugins.jetbrains.com/files/7219/605730/Symfony_Plugin-2024.1.276.zip": "sha256-drNmhJMe+kuY2fcHjY+SQmkACvFk0rVI4vAhyZ/bgLc=",
-    "https://plugins.jetbrains.com/files/7320/596012/PHP_Annotations-11.0.3.zip": "sha256-kRqgAW0bYEWLTCC6q2hhPmDwnOx3kiuqPhriZWizxTw=",
+    "https://plugins.jetbrains.com/files/7320/619870/PHP_Annotations-11.1.0.zip": "sha256-jvK3J3NwUrOO7+izYM/SagnqJGAUHa9yGFCcZvkPfrA=",
     "https://plugins.jetbrains.com/files/7322/595111/python-ce-242.21829.142.zip": "sha256-DwQNhbNO1zk75lcf35spNnzo0u103UAhXignhO+grek=",
     "https://plugins.jetbrains.com/files/7322/605059/python-ce-242.22855.74.zip": "sha256-As1MgvssBg+45DLRtNbirT5HyXPcabzt3ulKYBIiWj8=",
     "https://plugins.jetbrains.com/files/7322/608478/python-ce-242.23339.11.zip": "sha256-tWsshZfm5czxBtF4ZfPHzi843Oztx2i0JEHcpnlLcSo=",
