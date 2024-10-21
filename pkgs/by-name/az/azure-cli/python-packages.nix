@@ -63,7 +63,6 @@ let
             pkginfo
             psutil
             pyjwt
-            pynacl
             pyopenssl
             requests
           ]
