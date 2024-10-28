@@ -40,6 +40,7 @@ buildPythonPackage rec {
     cryptography
     pyasn1
     six
+    pynacl
   ];
 
   optional-dependencies = {
