@@ -40,8 +40,6 @@ buildPythonPackage rec {
   dependencies = [
     bcrypt
     cryptography
-    pyasn1
-    six
     pynacl
   ];
 
