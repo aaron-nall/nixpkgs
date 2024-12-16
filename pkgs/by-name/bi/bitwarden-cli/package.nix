@@ -1,24 +1,25 @@
-{ lib
-, stdenv
-, buildNpmPackage
-, nodejs_20
-, fetchFromGitHub
-, cctools
-, nix-update-script
-, nixosTests
-, perl
-, xcbuild
+{
+  lib,
+  stdenv,
+  buildNpmPackage,
+  nodejs_20,
+  fetchFromGitHub,
+  cctools,
+  nix-update-script,
+  nixosTests,
+  perl,
+  xcbuild,
 }:
 
 buildNpmPackage rec {
   pname = "bitwarden-cli";
-  version = "2024.11.0";
+  version = "2024.11.1";
 
   src = fetchFromGitHub {
     owner = "bitwarden";
     repo = "clients";
     rev = "cli-v${version}";
-    hash = "sha256-4QTQgW8k3EMf07Xqs2B+VXQOUPzoOgaNvoC02x4zvu8=";
+    hash = "sha256-J7gmrSAiu59LLP9pKfbv9+H00vXGQCrjkd4GBhkcyTY=";
   };
 
   postPatch = ''
@@ -28,7 +29,7 @@ buildNpmPackage rec {
 
   nodejs = nodejs_20;
 
-  npmDepsHash = "sha256-YzhCyNMvfXGmgOpl3qWj1Pqd1hY8CJ9QLwQds5ZMnqg=";
+  npmDepsHash = "sha256-MZoreHKmiUUxhq3tmL4lPp6vPmoQIqG3IPpZE56Z1Kc=";
 
   nativeBuildInputs = lib.optionals stdenv.hostPlatform.isDarwin [
     cctools
@@ -49,12 +50,30 @@ buildNpmPackage rec {
 
   npmFlags = [ "--legacy-peer-deps" ];
 
+  postConfigure = ''
+    # we want to build everything from source
+    shopt -s globstar
+    rm -r node_modules/**/prebuilds
+    shopt -u globstar
+  '';
+
+  postBuild = ''
+    # remove build artifacts that bloat the closure
+    shopt -s globstar
+    rm -r node_modules/**/{*.target.mk,binding.Makefile,config.gypi,Makefile,Release/.deps}
+    shopt -u globstar
+  '';
+
   passthru = {
     tests = {
       vaultwarden = nixosTests.vaultwarden.sqlite;
     };
     updateScript = nix-update-script {
-      extraArgs = [ "--commit" "--version=stable" "--version-regex=^cli-v(.*)$" ];
+      extraArgs = [
+        "--commit"
+        "--version=stable"
+        "--version-regex=^cli-v(.*)$"
+      ];
     };
   };
 
