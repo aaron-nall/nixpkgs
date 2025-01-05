@@ -4,7 +4,6 @@
   fetchurl,
   makeDesktopItem,
   copyDesktopItems,
-  unzip,
   autoPatchelfHook,
   atk,
   at-spi2-atk,
@@ -19,7 +18,7 @@
   libXext,
   libXfixes,
   libXrandr,
-  mesa,
+  libgbm,
   expat,
   libxcb,
   alsa-lib,
@@ -29,34 +28,13 @@
   wrapGAppsHook3,
   udev,
   libGL,
+  fetchzip,
+  unzip,
 }:
-
 let
+  selectSystem = attrs: attrs.${stdenv.hostPlatform.system};
   pname = "waveterm";
-  version = "0.8.10";
-
-  src =
-    let
-      inherit (stdenv.hostPlatform) system;
-      selectSystem = attrs: attrs.${system} or (throw "Unsupported system: ${system}");
-      suffix = selectSystem {
-        x86_64-linux = "waveterm-linux-x64-${version}.zip";
-        aarch64-linux = "waveterm-linux-arm64-${version}.zip";
-        x86_64-darwin = "Wave-darwin-universal-${version}.zip ";
-        aarch64-darwin = "Wave-darwin-arm64-${version}.zip";
-      };
-      hash = selectSystem {
-        x86_64-linux = "sha256-jhXHuzHMwo9U5B+FA2xAreOYRVroMCXqDo+9pjAyh0Q=";
-        aarch64-linux = "sha256-JnKkjG67uvYNod+uosJ+svTAm9bulJzTpza3jQie1yQ=";
-        x86_64-darwin = "sha256-Dk/pKZrqkjKc7WEGkrLdZdgUEaz8ndXjZuINyVNxEa8=";
-        aarch64-darwin = "sha256-FgBbUrp+Z9K4gmM4mew0NQ2yIjuC+cgYrrYkjv0Ohhg=";
-      };
-    in
-    fetchurl {
-      url = "https://github.com/wavetermdev/waveterm/releases/download/v${version}/${suffix}";
-      inherit hash;
-    };
-
+  version = "0.10.1";
   passthru.updateScript = ./update.sh;
 
   desktopItems = [
@@ -84,12 +62,6 @@ let
     })
   ];
 
-  unpackPhase = ''
-    runHook preUnpack
-    unzip ${src} -d ./
-    runHook postUnpack
-  '';
-
   meta = {
     description = "Open-source, cross-platform terminal for seamless workflows";
     homepage = "https://www.waveterm.dev";
@@ -109,15 +81,29 @@ let
     inherit
       pname
       version
-      src
       desktopItems
-      unpackPhase
       meta
       passthru
       ;
 
+    src =
+      let
+        arch = selectSystem {
+          x86_64-linux = "x64";
+          aarch64-linux = "arm64";
+        };
+        hash = selectSystem {
+          x86_64-linux = "sha256-zv8ndwMt4VqsdJEEdfXzK4rnyslxF/gwnFdUu5OavNY=";
+          aarch64-linux = "sha256-6EFk1CDPeYc1KWeIxBQEsMLA9tYpnSxjG+yRg5CkGZA=";
+        };
+      in
+      fetchzip {
+        url = "https://github.com/wavetermdev/waveterm/releases/download/v${version}/waveterm-linux-${arch}-${version}.zip";
+        inherit hash;
+        stripRoot = false;
+      };
+
     nativeBuildInputs = [
-      unzip
       copyDesktopItems
       autoPatchelfHook
       wrapGAppsHook3
@@ -137,7 +123,7 @@ let
       libXext
       libXfixes
       libXrandr
-      mesa
+      libgbm
       expat
       libxcb
       alsa-lib
@@ -152,12 +138,15 @@ let
 
     installPhase = ''
       runHook preInstall
-      mkdir -p $out/waveterm $out/bin
-      cp -r ./* $out/waveterm/
+
+      mkdir $out
+      cp -r . $out/waveterm
+
       runHook postInstall
     '';
 
     preFixup = ''
+      mkdir $out/bin
       makeWrapper $out/waveterm/waveterm $out/bin/waveterm \
         --prefix LD_LIBRARY_PATH : "${
           lib.makeLibraryPath [
@@ -167,15 +156,29 @@ let
     '';
   };
 
-  darwin = stdenv.mkDerivation {
+  darwin = stdenv.mkDerivation rec {
     inherit
       pname
       version
-      src
-      unpackPhase
       meta
       passthru
       ;
+
+    src =
+      let
+        arch = selectSystem {
+          x86_64-darwin = "x64";
+          aarch64-darwin = "arm64";
+        };
+        hash = selectSystem {
+          x86_64-darwin = "sha256-7TCDg0TU0Bx9WLwLiQRcyzrFTlmkXYQIpya2SUiEXoc=";
+          aarch64-darwin = "sha256-pVxPmTz1bCKREUOvA3Jrf7kiOI5iLzqgnutblEqc4IA=";
+        };
+      in
+      fetchurl {
+        url = "https://github.com/wavetermdev/waveterm/releases/download/v${version}/Wave-darwin-${arch}-${version}.zip";
+        inherit hash;
+      };
 
     nativeBuildInputs = [
       unzip
@@ -185,8 +188,10 @@ let
 
     installPhase = ''
       runHook preInstall
-      mkdir -p $out/Applications/Wave.app
-      cp -R . $out/Applications/Wave.app
+
+      mkdir -p $out/Applications
+      cp -r . $out/Applications/Wave.app
+
       runHook postInstall
     '';
   };

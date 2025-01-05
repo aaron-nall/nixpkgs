@@ -15,19 +15,17 @@
 
 buildPythonPackage rec {
   pname = "python-linkplay";
-  version = "0.0.15";
+  version = "0.1.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "Velleman";
     repo = "python-linkplay";
-    rev = "refs/tags/v${version}";
-    hash = "sha256-PDkDZchAXxrmjg7G/dbbUyZUS8dNrOppH96mLLdwK1s=";
+    tag = "v${version}";
+    hash = "sha256-voAhqqisBgBOTS9aPcAAFt6OeZ5Eb8RDH0xWjCbEryE=";
   };
 
   build-system = [ setuptools ];
-
-  pythonRelaxDeps = [ "aiofiles" ];
 
   dependencies = [
     aiofiles

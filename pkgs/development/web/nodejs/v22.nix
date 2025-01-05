@@ -5,14 +5,11 @@ let
     inherit openssl;
     python = python3;
   };
-
-  gypPatches = callPackage ./gyp-patches.nix { } ++ [
-  ];
 in
 buildNodejs {
   inherit enableNpm;
-  version = "22.9.0";
-  sha256 = "a55aeb368dee93432f610127cf94ce682aac07b93dcbbaadd856df122c9239df";
+  version = "22.11.0";
+  sha256 = "bbf0297761d53aefda9d7855c57c7d2c272b83a7b5bad4fea9cb29006d8e1d35";
   patches = [
     ./configure-emulator.patch
     ./configure-armv6-vfpv2.patch
@@ -22,31 +19,25 @@ buildNodejs {
     ./use-correct-env-in-tests.patch
     ./bin-sh-node-run-v22.patch
 
-    # Patches for OpenSSL 3.2
-    # Patches not yet released
+    # Fix for https://github.com/NixOS/nixpkgs/issues/355919
+    # FIXME: remove after a minor point release
     (fetchpatch2 {
-      url = "https://github.com/nodejs/node/commit/f8b7a171463e775da304bccf4cf165e634525c7e.patch?full_index=1";
-      hash = "sha256-imptUwt2oG8pPGKD3V6m5NQXuahis71UpXiJm4C0E6o=";
+      url = "https://github.com/nodejs/node/commit/a094a8166cd772f89e92b5deef168e5e599fa815.patch?full_index=1";
+      hash = "sha256-5FZfozYWRa1ZI/f+e+xpdn974Jg2DbiHbua13XUQP5E=";
     })
     (fetchpatch2 {
-      url = "https://github.com/nodejs/node/commit/6dfa3e46d3d2f8cfba7da636d48a5c41b0132cd7.patch?full_index=1";
-      hash = "sha256-ITtGsvZI6fliirCKvbMH9N2Xoy3001bz+hS3NPoqvzg=";
+      url = "https://github.com/nodejs/node/commit/f270462c09ddfd770291a7c8a2cd204b2c63d730.patch?full_index=1";
+      hash = "sha256-Err0i5g7WtXcnhykKgrS3ocX7/3oV9UrT0SNeRtMZNU=";
     })
+    # Patch to use the shared version of SQLite instead of the one vendored upstream:
     (fetchpatch2 {
-      url = "https://github.com/nodejs/node/commit/29b9c72b05786061cde58a5ae11cfcb580ab6c28.patch?full_index=1";
-      hash = "sha256-xaqtwsrOIyRV5zzccab+nDNG8kUgO6AjrVYJNmjeNP0=";
+      url = "https://github.com/nodejs/node/commit/32f7d5ad1cf79e7e731e1bb7ac967f4f2a3194cf.patch?full_index=1";
+      hash = "sha256-dyUr3caGfetrXgfAl+CLE1LKKetDZCpPwMg4EM98rqI=";
     })
+    # fixes test failure, remove when included in release
     (fetchpatch2 {
-      url = "https://github.com/nodejs/node/commit/cfe58cfdc488da71e655d3da709292ce6d9ddb58.patch?full_index=1";
-      hash = "sha256-9GblpbQcYfoiE5R7fETsdW7v1Mm2Xdr4+xRNgUpLO+8=";
+      url = "https://github.com/nodejs/node/commit/b6fe731c55eb4cb9d14042a23e5002ed39b7c8b7.patch?full_index=1";
+      hash = "sha256-KoKsQBFKUji0GeEPTR8ixBflCiHBhPqd2cPVPuKyua8=";
     })
-    (fetchpatch2 {
-      url = "https://github.com/nodejs/node/commit/2cec716c48cea816dcd5bf4997ae3cdf1fe4cd90.patch?full_index=1";
-      hash = "sha256-ExIkAj8yRJEK39OfV6A53HiuZsfQOm82/Tvj0nCaI8A=";
-    })
-    (fetchpatch2 {
-      url = "https://github.com/nodejs/node/commit/0f7bdcc17fbc7098b89f238f4bd8ecad9367887b.patch?full_index=1";
-      hash = "sha256-lXx6QyD2anlY9qAwjNMFM2VcHckBshghUF1NaMoaNl4=";
-    })
-  ] ++ gypPatches;
+  ];
 }

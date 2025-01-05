@@ -19,31 +19,30 @@
   makeDesktopItem,
   copyDesktopItems,
 }:
-let
-  gradleBuildTask = ":desktopApp:createDistributable";
-  gradleUpdateTask = gradleBuildTask;
-  desktopItems = [
-    (makeDesktopItem {
-      name = "Keyguard";
-      exec = "Keyguard";
-      icon = "Keyguard";
-      comment = "Keyguard";
-      desktopName = "Keyguard";
-    })
-  ];
-in
 stdenv.mkDerivation (finalAttrs: {
   pname = "keyguard";
-  version = "1.6.2";
+  version = "1.7.1";
 
   src = fetchFromGitHub {
     owner = "AChep";
     repo = "keyguard-app";
-    rev = "eb36b853a7ac67a0f72d5684e6751d41969b07dd";
-    hash = "sha256-tMNc8OlYsiYmVtac2jngvrFZjgI7eNFVIxXUfIJUdK4=";
+    tag = "r20241221";
+    hash = "sha256-AeomyFazONZatbxT6qaTt+/5eBAkgWYwti62CD98jkg=";
   };
 
-  inherit gradleBuildTask gradleUpdateTask desktopItems;
+  gradleBuildTask = ":desktopApp:createDistributable";
+
+  gradleUpdateTask = finalAttrs.gradleBuildTask;
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = "keyguard";
+      exec = "Keyguard";
+      icon = "keyguard";
+      comment = "Keyguard";
+      desktopName = "Keyguard";
+    })
+  ];
 
   nativeBuildInputs = [
     gradle
@@ -62,8 +61,6 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   doCheck = false;
-
-  __darwinAllowLocalNetworking = true;
 
   gradleFlags = [ "-Dorg.gradle.java.home=${jdk17}" ];
 
@@ -84,9 +81,8 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/
-    cp -a ./desktopApp/build/compose/binaries/main/app/*/* $out/
-    install -Dm0644 $out/lib/Keyguard.png $out/share/pixmaps/Keyguard.png
+    cp -r ./desktopApp/build/compose/binaries/main/app/Keyguard $out
+    install -Dm0644 $out/lib/Keyguard.png $out/share/pixmaps/keyguard.png
 
     runHook postInstall
   '';
@@ -101,7 +97,6 @@ stdenv.mkDerivation (finalAttrs: {
       fromSource
       binaryBytecode
     ];
-    platforms = lib.platforms.darwin ++ [ "x86_64-linux" ];
-    broken = stdenv.hostPlatform.isDarwin;
+    platforms = lib.platforms.linux;
   };
 })

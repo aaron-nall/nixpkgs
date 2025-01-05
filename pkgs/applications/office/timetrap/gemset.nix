@@ -20,14 +20,14 @@
     version = "5.30.0";
   };
   sqlite3 = {
-    groups = ["default"];
-    platforms = [];
+    groups = [ "default" ];
+    platforms = [ ];
     source = {
-      remotes = ["https://rubygems.org"];
-      sha256 = "0lja01cp9xd5m6vmx99zwn4r7s97r1w5cb76gqd8xhbm1wxyzf78";
+      remotes = [ "https://rubygems.org" ];
+      sha256 = "073hd24qwx9j26cqbk0jma0kiajjv9fb8swv9rnz8j4mf0ygcxzs";
       type = "gem";
     };
-    version = "1.4.2";
+    version = "1.7.3";
   };
   timetrap = {
     dependencies = ["chronic" "sequel" "sqlite3"];

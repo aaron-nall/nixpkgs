@@ -149,6 +149,14 @@ self: super:
 
   libX11 = super.libX11.overrideAttrs (attrs: {
     outputs = [ "out" "dev" "man" ];
+    patches = [
+      # Fix spurious Xerror when running synchronized
+      # https://gitlab.freedesktop.org/xorg/lib/libx11/-/merge_requests/264
+      (fetchpatch {
+        url = "https://gitlab.freedesktop.org/xorg/lib/libx11/-/commit/f3d6ebac35301d4ad068e307f0fbe6aa12ccbccb.patch";
+        hash = "sha256-wQNMsbQ+h9VlNiWr+r34AxvViC8fq02ZhcARRnw7O9k=";
+      })
+    ];
     configureFlags = attrs.configureFlags or []
       ++ malloc0ReturnsNullCrossFlag
       ++ lib.optional (stdenv.targetPlatform.useLLVM or false) "ac_cv_path_RAWCPP=cpp";
@@ -169,10 +177,11 @@ self: super:
   });
 
   libAppleWM = super.libAppleWM.overrideAttrs (attrs: {
-    buildInputs = attrs.buildInputs ++ [ ApplicationServices ];
-    preConfigure = ''
-      substituteInPlace src/Makefile.in --replace -F/System -F${ApplicationServices}
-    '';
+    nativeBuildInputs = attrs.nativeBuildInputs ++ [ autoreconfHook ];
+    buildInputs =  attrs.buildInputs ++ [ xorg.utilmacros ];
+    meta = attrs.meta // {
+      platforms = lib.platforms.darwin;
+    };
   });
 
   libXau = super.libXau.overrideAttrs (attrs: {
@@ -881,6 +890,7 @@ self: super:
         configureFlags = [
           # note: --enable-xquartz is auto
           "CPPFLAGS=-I${./darwin/dri}"
+          "--disable-libunwind" # libunwind on darwin is missing unw_strerror
           "--disable-glamor"
           "--with-default-font-path="
           "--with-apple-application-name=XQuartz"
@@ -1011,26 +1021,10 @@ self: super:
     meta = attrs.meta // { mainProgram = "xinit"; };
   });
 
-  xf86videointel = super.xf86videointel.overrideAttrs (attrs: {
-    # the update script only works with released tarballs :-/
-    name = "xf86-video-intel-2021-01-15";
-    src = fetchFromGitLab {
-      domain = "gitlab.freedesktop.org";
-      group = "xorg";
-      owner = "driver";
-      repo = "xf86-video-intel";
-      rev = "31486f40f8e8f8923ca0799aea84b58799754564";
-      sha256 = "sha256-nqT9VZDb2kAC72ot9UCdwEkM1uuP9NriJePulzrdZlM=";
-    };
-    buildInputs = attrs.buildInputs ++ [ xorg.libXScrnSaver xorg.libXv xorg.pixman xorg.utilmacros ];
-    nativeBuildInputs = attrs.nativeBuildInputs ++ [autoreconfHook ];
-    configureFlags = [ "--with-default-dri=3" "--enable-tools" ];
-    patches = [ ./use_crocus_and_iris.patch ];
-
-    meta = attrs.meta // {
-      platforms = ["i686-linux" "x86_64-linux"];
-    };
-  });
+  xf86videointel = throw ''
+    xf86videointel has been removed as the package is unmaintained and the driver is no longer functional.
+    Please remove "intel" from `services.xserver.videoDrivers` and switch to the "modesetting" driver.
+  ''; # Added 2024-12-16;
 
   xf86videoopenchrome = super.xf86videoopenchrome.overrideAttrs (attrs: {
     buildInputs = attrs.buildInputs ++ [ xorg.libXv ];
@@ -1123,6 +1117,15 @@ self: super:
   xsetroot = addMainProgram super.xsetroot { };
   xsm = addMainProgram super.xsm { };
   xstdcmap = addMainProgram super.xstdcmap { };
+  xtrans = super.xtrans.overrideAttrs (attrs: {
+    patches = [
+      # https://gitlab.freedesktop.org/xorg/lib/libxtrans/-/merge_requests/22
+      (fetchpatch {
+        url = "https://gitlab.freedesktop.org/xorg/lib/libxtrans/-/commit/ae99ac32f61e0db92a45179579030a23fe1b5770.patch";
+        hash = "sha256-QnTTcZPd9QaHS5up4Ne7iuNL/OBu+DnzXprovWnW4cw=";
+      })
+    ];
+  });
   xwd = addMainProgram super.xwd { };
   xwininfo = addMainProgram super.xwininfo { };
   xwud = addMainProgram super.xwud { };

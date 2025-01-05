@@ -2,44 +2,43 @@
   lib,
   stdenv,
   buildPythonPackage,
-  CoreServices,
   eventlet,
   fetchPypi,
   flaky,
+  pytest-cov-stub,
   pytest-timeout,
   pytestCheckHook,
   pythonOlder,
   pyyaml,
+  setuptools,
+  apple-sdk_11,
 }:
 
 buildPythonPackage rec {
   pname = "watchdog";
-  version = "4.0.1";
-  format = "setuptools";
-
-  disabled = pythonOlder "3.7";
+  version = "5.0.3";
+  pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-7rqs9nT6JVEeiGcCjSgeYC7mUABFtX9DsId4CC9/i0Q=";
+    hash = "sha256-EI9Cp/A0UEKoVNTQrQg0t0HUITMNX1dbgcsnuINQAXY=";
   };
 
-  # force kqueue on x86_64-darwin, because our api version does
-  # not support fsevents
-  patches = lib.optionals (stdenv.hostPlatform.isDarwin && !stdenv.hostPlatform.isAarch64) [
-    ./force-kqueue.patch
-  ];
+  build-system = [ setuptools ];
 
-  buildInputs = lib.optionals stdenv.hostPlatform.isDarwin [ CoreServices ];
+  buildInputs = lib.optional stdenv.hostPlatform.isDarwin apple-sdk_11;
 
   optional-dependencies.watchmedo = [ pyyaml ];
 
-  nativeCheckInputs = [
-    eventlet
-    flaky
-    pytest-timeout
-    pytestCheckHook
-  ] ++ optional-dependencies.watchmedo;
+  nativeCheckInputs =
+    [
+      flaky
+      pytest-cov-stub
+      pytest-timeout
+      pytestCheckHook
+    ]
+    ++ optional-dependencies.watchmedo
+    ++ lib.optionals (pythonOlder "3.13") [ eventlet ];
 
   postPatch = ''
     substituteInPlace setup.cfg \

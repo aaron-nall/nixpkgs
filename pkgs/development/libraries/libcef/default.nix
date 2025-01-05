@@ -17,7 +17,7 @@
 , libXext
 , libXfixes
 , libXrandr
-, mesa
+, libgbm
 , gtk3
 , pango
 , cairo
@@ -31,7 +31,7 @@
 
 let
   gl_rpath = lib.makeLibraryPath [
-    stdenv.cc.cc.lib
+    stdenv.cc.cc
   ];
 
   rpath = lib.makeLibraryPath [
@@ -50,7 +50,7 @@ let
     libXext
     libXfixes
     libXrandr
-    mesa
+    libgbm
     gtk3
     pango
     cairo
