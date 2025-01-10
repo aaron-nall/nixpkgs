@@ -116,7 +116,7 @@ stdenv.mkDerivation (finalAttrs: {
     ( # kernel modules
       cd kmods
       mkdir -p $out/lib/modules/${kernelVersion}/extra
-      cp prl_fs/SharedFolders/Guest/Linux/prl_fs/prl_fs.ko $out/lib/modules/${kernelVersion}/extra
+      # cp prl_fs/SharedFolders/Guest/Linux/prl_fs/prl_fs.ko $out/lib/modules/${kernelVersion}/extra
       cp prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze/prl_fs_freeze.ko $out/lib/modules/${kernelVersion}/extra
       cp prl_tg/Toolgate/Guest/Linux/prl_tg/prl_tg.ko $out/lib/modules/${kernelVersion}/extra
       ${lib.optionalString stdenv.hostPlatform.isAarch64 "cp prl_notifier/Installation/lnx/prl_notifier/prl_notifier.ko $out/lib/modules/${kernelVersion}/extra"}
@@ -171,7 +171,7 @@ stdenv.mkDerivation (finalAttrs: {
       done
 
       mkdir -p $out/share/man/man8
-      install -Dm644 ../mount.prl_fs.8 $out/share/man/man8
+      #install -Dm644 ../mount.prl_fs.8 $out/share/man/man8
 
       substituteInPlace ../99prltoolsd-hibernate \
         --replace "/bin/bash" "${bash}/bin/bash"
