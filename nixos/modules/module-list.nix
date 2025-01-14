@@ -571,7 +571,13 @@
   ./services/editors/emacs.nix
   ./services/editors/haste.nix
   ./services/editors/infinoted.nix
+  ./services/finance/libeufin/bank.nix
+  ./services/finance/libeufin/module.nix
+  ./services/finance/libeufin/nexus.nix
   ./services/finance/odoo.nix
+  ./services/finance/taler/exchange.nix
+  ./services/finance/taler/merchant.nix
+  ./services/finance/taler/module.nix
   ./services/games/archisteamfarm.nix
   ./services/games/armagetronad.nix
   ./services/games/crossfire-server.nix
@@ -893,6 +899,7 @@
   ./services/misc/workout-tracker.nix
   ./services/misc/whisparr.nix
   ./services/misc/xmrig.nix
+  ./services/misc/ytdl-sub.nix
   ./services/misc/zoneminder.nix
   ./services/misc/zookeeper.nix
   ./services/monitoring/alerta.nix
@@ -1055,6 +1062,7 @@
   ./services/networking/dnsmasq.nix
   ./services/networking/dnsproxy.nix
   ./services/networking/doh-proxy-rust.nix
+  ./services/networking/doh-server.nix
   ./services/networking/ejabberd.nix
   ./services/networking/envoy.nix
   ./services/networking/epmd.nix
@@ -1133,6 +1141,7 @@
   ./services/networking/lxd-image-server.nix
   ./services/networking/magic-wormhole-mailbox-server.nix
   ./services/networking/matterbridge.nix
+  ./services/networking/mptcpd.nix
   ./services/networking/microsocks.nix
   ./services/networking/mihomo.nix
   ./services/networking/minidlna.nix
@@ -1456,6 +1465,7 @@
   ./services/web-apps/documize.nix
   ./services/web-apps/dokuwiki.nix
   ./services/web-apps/dolibarr.nix
+  ./services/web-apps/echoip.nix
   ./services/web-apps/eintopf.nix
   ./services/web-apps/engelsystem.nix
   ./services/web-apps/ethercalc.nix
@@ -1573,6 +1583,7 @@
   ./services/web-apps/your_spotify.nix
   ./services/web-apps/youtrack.nix
   ./services/web-apps/zabbix.nix
+  ./services/web-apps/zipline.nix
   ./services/web-apps/zitadel.nix
   ./services/web-servers/agate.nix
   ./services/web-servers/apache-httpd/default.nix
@@ -1690,6 +1701,7 @@
   ./system/boot/systemd.nix
   ./system/boot/systemd/coredump.nix
   ./system/boot/systemd/dm-verity.nix
+  ./system/boot/systemd/fido2.nix
   ./system/boot/systemd/initrd-secrets.nix
   ./system/boot/systemd/initrd.nix
   ./system/boot/systemd/journald.nix
@@ -1750,7 +1762,6 @@
   ./tasks/trackpoint.nix
   ./testing/service-runner.nix
   ./virtualisation/amazon-options.nix
-  ./virtualisation/anbox.nix
   ./virtualisation/appvm.nix
   ./virtualisation/build-vm.nix
   ./virtualisation/container-config.nix
