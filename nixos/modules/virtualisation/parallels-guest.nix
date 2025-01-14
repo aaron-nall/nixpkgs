@@ -73,29 +73,16 @@ in
       };
     };
 
-    # systemd.services.prlfsmountd = mkIf config.hardware.parallels.autoMountShares {
-    #   description = "Parallels Guest File System Sharing Tool";
-    #   wantedBy = [ "multi-user.target" ];
-    #   path = [ prl-tools ];
-    #   serviceConfig = rec {
-    #     ExecStart = "${prl-tools}/sbin/prlfsmountd ${PIDFile}";
-    #     ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /media";
-    #     ExecStopPost = "${prl-tools}/sbin/prlfsmountd -u";
-    #     PIDFile = "/run/prlfsmountd.pid";
-    #     WorkingDirectory = "${prl-tools}/bin";
-    #   };
-    # };
-
-    # systemd.services.prlshprint = {
-    #   description = "Parallels Printing Tool";
-    #   wantedBy = [ "multi-user.target" ];
-    #   bindsTo = [ "cups.service" ];
-    #   path = [ prl-tools ];
-    #   serviceConfig = {
-    #     ExecStart = "${prl-tools}/bin/prlshprint";
-    #     WorkingDirectory = "${prl-tools}/bin";
-    #   };
-    # };
+    systemd.services.prlshprint = {
+      description = "Parallels Printing Tool";
+      wantedBy = [ "multi-user.target" ];
+      bindsTo = [ "cups.service" ];
+      path = [ prl-tools ];
+      serviceConfig = {
+        ExecStart = "${prl-tools}/bin/prlshprint";
+        WorkingDirectory = "${prl-tools}/bin";
+      };
+    };
 
     systemd.user.services = {
       prlcc = {
@@ -108,7 +95,6 @@ in
         };
       };
       prldnd = {
-        enable = false;
         description = "Parallels Drag And Drop Tool";
         wantedBy = [ "graphical-session.target" ];
         path = [ prl-tools ];
@@ -118,7 +104,6 @@ in
         };
       };
       prlcp = {
-        enable = false;
         description = "Parallels Copy Paste Tool";
         wantedBy = [ "graphical-session.target" ];
         path = [ prl-tools ];
@@ -129,7 +114,6 @@ in
         };
       };
       prlsga = {
-        enable = false;
         description = "Parallels Shared Guest Applications Tool";
         wantedBy = [ "graphical-session.target" ];
         path = [ prl-tools ];
@@ -139,7 +123,6 @@ in
         };
       };
       prlshprof = {
-        enable = false;
         description = "Parallels Shared Profile Tool";
         wantedBy = [ "graphical-session.target" ];
         path = [ prl-tools ];
