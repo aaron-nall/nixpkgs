@@ -3,10 +3,10 @@
     "aqua": {
       "update-channel": "Aqua RELEASE",
       "url-template": "https://download.jetbrains.com/aqua/aqua-{version}.tar.gz",
-      "version": "2024.3.1",
-      "sha256": "e304d8f900881d18865010819dc035d59be00b1364baa2b98ef47d923907ce57",
-      "url": "https://download.jetbrains.com/aqua/aqua-2024.3.1.tar.gz",
-      "build_number": "243.22562.238"
+      "version": "2024.3.2",
+      "sha256": "de073e8a3734a2c4ef984b3e1bd68f5de72a6180e73400889510439ac3f419aa",
+      "url": "https://download.jetbrains.com/aqua/aqua-2024.3.2.tar.gz",
+      "build_number": "243.23654.154"
     },
     "clion": {
       "update-channel": "CLion RELEASE",
@@ -84,26 +84,26 @@
     "pycharm-community": {
       "update-channel": "PyCharm RELEASE",
       "url-template": "https://download.jetbrains.com/python/pycharm-community-{version}.tar.gz",
-      "version": "2024.3.1.1",
-      "sha256": "36b9332262815099d0b86d2689fcf91b379730cb838623d82c0845969bb6470f",
-      "url": "https://download.jetbrains.com/python/pycharm-community-2024.3.1.1.tar.gz",
-      "build_number": "243.22562.220"
+      "version": "2024.3.2",
+      "sha256": "1674426c19a62f1046500b2bb170c849ddd259b2c4a4394bb2c90106aa316c4b",
+      "url": "https://download.jetbrains.com/python/pycharm-community-2024.3.2.tar.gz",
+      "build_number": "243.23654.177"
     },
     "pycharm-professional": {
       "update-channel": "PyCharm RELEASE",
       "url-template": "https://download.jetbrains.com/python/pycharm-professional-{version}.tar.gz",
-      "version": "2024.3.1.1",
-      "sha256": "5698131d93d00a261c720a31ec54ef1c850581c274be6938dd923e8c0383da25",
-      "url": "https://download.jetbrains.com/python/pycharm-professional-2024.3.1.1.tar.gz",
-      "build_number": "243.22562.220"
+      "version": "2024.3.2",
+      "sha256": "520ffc8c2d4ebd2d75663c74567882af28c3a5d595d165a494394842330b2b5a",
+      "url": "https://download.jetbrains.com/python/pycharm-professional-2024.3.2.tar.gz",
+      "build_number": "243.23654.177"
     },
     "rider": {
       "update-channel": "Rider RELEASE",
       "url-template": "https://download.jetbrains.com/rider/JetBrains.Rider-{version}.tar.gz",
-      "version": "2024.3.3",
-      "sha256": "3185826c0d85c06bf18c5ece3f5f9698acef006932b7a92b6cb190fd4d8e2807",
-      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.3.tar.gz",
-      "build_number": "243.22562.250"
+      "version": "2024.3.4",
+      "sha256": "8f63b8ae5be2834212b629a0d3f7d8a17c03154f069920dab8e24f61dbe5a4a5",
+      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.4.tar.gz",
+      "build_number": "243.23654.126"
     },
     "ruby-mine": {
       "update-channel": "RubyMine RELEASE",
@@ -142,10 +142,10 @@
     "aqua": {
       "update-channel": "Aqua RELEASE",
       "url-template": "https://download.jetbrains.com/aqua/aqua-{version}-aarch64.tar.gz",
-      "version": "2024.3.1",
-      "sha256": "4895ad44a456f56121cc4e78be45b6a4ccae8080ab7251cd434304465d01f7c4",
-      "url": "https://download.jetbrains.com/aqua/aqua-2024.3.1-aarch64.tar.gz",
-      "build_number": "243.22562.238"
+      "version": "2024.3.2",
+      "sha256": "d2a3c781756a83ccea63dc6d9aebf85f819de1edb5bcd4e5a1a161eaa0779c84",
+      "url": "https://download.jetbrains.com/aqua/aqua-2024.3.2-aarch64.tar.gz",
+      "build_number": "243.23654.154"
     },
     "clion": {
       "update-channel": "CLion RELEASE",
@@ -223,26 +223,26 @@
     "pycharm-community": {
       "update-channel": "PyCharm RELEASE",
       "url-template": "https://download.jetbrains.com/python/pycharm-community-{version}-aarch64.tar.gz",
-      "version": "2024.3.1.1",
-      "sha256": "cbc36953b6943e70468e1908bef9adddc2a9597124e5d794f294095888b0914c",
-      "url": "https://download.jetbrains.com/python/pycharm-community-2024.3.1.1-aarch64.tar.gz",
-      "build_number": "243.22562.220"
+      "version": "2024.3.2",
+      "sha256": "9fff53f58d2ba25b076725e9087ee4c2e0d550b5358137e435d9224f7b5dda45",
+      "url": "https://download.jetbrains.com/python/pycharm-community-2024.3.2-aarch64.tar.gz",
+      "build_number": "243.23654.177"
     },
     "pycharm-professional": {
       "update-channel": "PyCharm RELEASE",
       "url-template": "https://download.jetbrains.com/python/pycharm-professional-{version}-aarch64.tar.gz",
-      "version": "2024.3.1.1",
-      "sha256": "a301f7316b17ace60c9e765f50ae0987262e99da3feb222c9abf761fda10cff3",
-      "url": "https://download.jetbrains.com/python/pycharm-professional-2024.3.1.1-aarch64.tar.gz",
-      "build_number": "243.22562.220"
+      "version": "2024.3.2",
+      "sha256": "7e7a4ebe5e78414695c3701eecf7e170a0574b2ca511a545594efa2587ea1a47",
+      "url": "https://download.jetbrains.com/python/pycharm-professional-2024.3.2-aarch64.tar.gz",
+      "build_number": "243.23654.177"
     },
     "rider": {
       "update-channel": "Rider RELEASE",
       "url-template": "https://download.jetbrains.com/rider/JetBrains.Rider-{version}-aarch64.tar.gz",
-      "version": "2024.3.3",
-      "sha256": "8ca14eeae6a9164da955f9e292dda788bda53a031c24ef6c2fab505e3e2f175b",
-      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.3-aarch64.tar.gz",
-      "build_number": "243.22562.250"
+      "version": "2024.3.4",
+      "sha256": "11107efdd6d15965817709d283362f0b0c522ffdc4f8175e85180bf9b0451443",
+      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.4-aarch64.tar.gz",
+      "build_number": "243.23654.126"
     },
     "ruby-mine": {
       "update-channel": "RubyMine RELEASE",
@@ -281,10 +281,10 @@
     "aqua": {
       "update-channel": "Aqua RELEASE",
       "url-template": "https://download.jetbrains.com/aqua/aqua-{version}.dmg",
-      "version": "2024.3.1",
-      "sha256": "2efd04de1b67a394529fb154e63c58e34654af42a5fb12b5989ab8d5a784483b",
-      "url": "https://download.jetbrains.com/aqua/aqua-2024.3.1.dmg",
-      "build_number": "243.22562.238"
+      "version": "2024.3.2",
+      "sha256": "423d492e9849beb7edbbd1771650a04e8df9f469bf1789b41bc5878c84cee393",
+      "url": "https://download.jetbrains.com/aqua/aqua-2024.3.2.dmg",
+      "build_number": "243.23654.154"
     },
     "clion": {
       "update-channel": "CLion RELEASE",
@@ -362,26 +362,26 @@
     "pycharm-community": {
       "update-channel": "PyCharm RELEASE",
       "url-template": "https://download.jetbrains.com/python/pycharm-community-{version}.dmg",
-      "version": "2024.3.1.1",
-      "sha256": "72cf007a2f5505544b821c97b34f61f6195f32beaf3bfd032370ee7f03cb5046",
-      "url": "https://download.jetbrains.com/python/pycharm-community-2024.3.1.1.dmg",
-      "build_number": "243.22562.220"
+      "version": "2024.3.2",
+      "sha256": "7244a81461290b1e555e5de9e00ddfad18ece5d31383a6539e0feaa1a734b233",
+      "url": "https://download.jetbrains.com/python/pycharm-community-2024.3.2.dmg",
+      "build_number": "243.23654.177"
     },
     "pycharm-professional": {
       "update-channel": "PyCharm RELEASE",
       "url-template": "https://download.jetbrains.com/python/pycharm-professional-{version}.dmg",
-      "version": "2024.3.1.1",
-      "sha256": "d0329b017d21c25426f625c31fb9e193b9dc0be17150675c1010d3bfd27f2ca2",
-      "url": "https://download.jetbrains.com/python/pycharm-professional-2024.3.1.1.dmg",
-      "build_number": "243.22562.220"
+      "version": "2024.3.2",
+      "sha256": "71544961bab32d6dd3af554bc2af0af59e9f748fc0a7a87d6026d5aebf3a6105",
+      "url": "https://download.jetbrains.com/python/pycharm-professional-2024.3.2.dmg",
+      "build_number": "243.23654.177"
     },
     "rider": {
       "update-channel": "Rider RELEASE",
       "url-template": "https://download.jetbrains.com/rider/JetBrains.Rider-{version}.dmg",
-      "version": "2024.3.3",
-      "sha256": "55e851ef7dcfde75bc8e81a9650577ffa2b3c1fed4f49c529b5bac766e8e734e",
-      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.3.dmg",
-      "build_number": "243.22562.250"
+      "version": "2024.3.4",
+      "sha256": "7a8be161e0574cbe699b82f5bf0bd74de8d13b9ff8851f620f90c4c301469680",
+      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.4.dmg",
+      "build_number": "243.23654.126"
     },
     "ruby-mine": {
       "update-channel": "RubyMine RELEASE",
@@ -420,10 +420,10 @@
     "aqua": {
       "update-channel": "Aqua RELEASE",
       "url-template": "https://download.jetbrains.com/aqua/aqua-{version}-aarch64.dmg",
-      "version": "2024.3.1",
-      "sha256": "ee6ae8231315aff5908d240449be182c9bab58a09ec03bc3afb302b7d7e597d2",
-      "url": "https://download.jetbrains.com/aqua/aqua-2024.3.1-aarch64.dmg",
-      "build_number": "243.22562.238"
+      "version": "2024.3.2",
+      "sha256": "43974cdbbb71aaf5bfcfaf2cfd0e69e9920dda3973e64671936c1d52b267494d",
+      "url": "https://download.jetbrains.com/aqua/aqua-2024.3.2-aarch64.dmg",
+      "build_number": "243.23654.154"
     },
     "clion": {
       "update-channel": "CLion RELEASE",
@@ -501,26 +501,26 @@
     "pycharm-community": {
       "update-channel": "PyCharm RELEASE",
       "url-template": "https://download.jetbrains.com/python/pycharm-community-{version}-aarch64.dmg",
-      "version": "2024.3.1.1",
-      "sha256": "ad894fdd3f56260afde718bf8f8dd342780e5a5ecfdbf3c66772a4e1562376fe",
-      "url": "https://download.jetbrains.com/python/pycharm-community-2024.3.1.1-aarch64.dmg",
-      "build_number": "243.22562.220"
+      "version": "2024.3.2",
+      "sha256": "855440e5a38705d8cd1d0d6b5d3fe4817fdfde62fd1bc934c51de16cd6227ba9",
+      "url": "https://download.jetbrains.com/python/pycharm-community-2024.3.2-aarch64.dmg",
+      "build_number": "243.23654.177"
     },
     "pycharm-professional": {
       "update-channel": "PyCharm RELEASE",
       "url-template": "https://download.jetbrains.com/python/pycharm-professional-{version}-aarch64.dmg",
-      "version": "2024.3.1.1",
-      "sha256": "b2afcf6bb9a9a2fb6c516815ce08073429ea506f44c7cafa9503c59da310caae",
-      "url": "https://download.jetbrains.com/python/pycharm-professional-2024.3.1.1-aarch64.dmg",
-      "build_number": "243.22562.220"
+      "version": "2024.3.2",
+      "sha256": "793c9c03a6c4d3c6446a0f068a5d8e0fd3611e096aabc04918ae0daf739c134d",
+      "url": "https://download.jetbrains.com/python/pycharm-professional-2024.3.2-aarch64.dmg",
+      "build_number": "243.23654.177"
     },
     "rider": {
       "update-channel": "Rider RELEASE",
       "url-template": "https://download.jetbrains.com/rider/JetBrains.Rider-{version}-aarch64.dmg",
-      "version": "2024.3.3",
-      "sha256": "139f8444b48c89745216616bc7a263259a95105892233651fb08b14cc18953a1",
-      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.3-aarch64.dmg",
-      "build_number": "243.22562.250"
+      "version": "2024.3.4",
+      "sha256": "6d0439fb5ce9364ceab5b839aafd1f904ccda99483b4e8f3d41ffbcb8469afe7",
+      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.4-aarch64.dmg",
+      "build_number": "243.23654.126"
     },
     "ruby-mine": {
       "update-channel": "RubyMine RELEASE",
