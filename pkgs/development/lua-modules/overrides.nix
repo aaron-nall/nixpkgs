@@ -30,6 +30,7 @@
 , libmpack
 , libmysqlclient
 , libpsl
+, libpq
 , libuuid
 , libuv
 , libxcrypt
@@ -44,7 +45,6 @@
 , openssl
 , pcre
 , pkg-config
-, postgresql
 , readline
 , rustPlatform
 , sol2
@@ -361,7 +361,7 @@ in
 
   luadbi-postgresql = prev.luadbi-postgresql.overrideAttrs (oa: {
     buildInputs = oa.buildInputs ++ [
-      (lib.getDev postgresql)
+      (lib.getDev libpq)
     ];
   });
 
@@ -860,6 +860,24 @@ in
       lua.pkgs.luarocks-build-rust-mlua
     ];
 
+  });
+
+  tree-sitter-http = prev.tree-sitter-http.overrideAttrs (oa: {
+    propagatedBuildInputs =
+      let
+        # HACK: luarocks-nix puts rockspec build dependencies in the nativeBuildInputs,
+        # but that doesn't seem to work
+        lua = lib.head oa.propagatedBuildInputs;
+      in
+      oa.propagatedBuildInputs
+      ++ [
+        lua.pkgs.luarocks-build-treesitter-parser
+        tree-sitter
+      ];
+
+    preInstall = ''
+      export HOME="$TMPDIR";
+    '';
   });
 
   tree-sitter-norg = prev.tree-sitter-norg.overrideAttrs (oa: {
