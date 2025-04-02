@@ -15,19 +15,19 @@
   nix-update-script,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "ruff";
-  version = "0.9.6";
+  version = "0.11.2";
 
   src = fetchFromGitHub {
     owner = "astral-sh";
     repo = "ruff";
-    tag = version;
-    hash = "sha256-xKlvj+8ox5UdkH3s9IOIMOVPCDQMLnGUKDOhKAZZgg4=";
+    tag = finalAttrs.version;
+    hash = "sha256-/K6+zze5d0RAE7/Nalnmx9qKHI1rPDeh3OkTatgP5Q4=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-m9U4OFefSumTT6heNz4qOdRBhsJvP3wcXeZcMVD+NqA=";
+  cargoHash = "sha256-uDuR7GF3918V6ssx4p64pOzCRlLl2vJR0FEBSUnlFQ8=";
 
   nativeBuildInputs = [ installShellFiles ];
 
@@ -35,7 +35,7 @@ rustPlatform.buildRustPackage rec {
     rust-jemalloc-sys
   ];
 
-  postInstall =
+  postInstall = lib.optionalString (stdenv.hostPlatform.emulatorAvailable buildPackages) (
     let
       emulator = stdenv.hostPlatform.emulator buildPackages;
     in
@@ -44,7 +44,8 @@ rustPlatform.buildRustPackage rec {
         --bash <(${emulator} $out/bin/ruff generate-shell-completion bash) \
         --fish <(${emulator} $out/bin/ruff generate-shell-completion fish) \
         --zsh <(${emulator} $out/bin/ruff generate-shell-completion zsh)
-    '';
+    ''
+  );
 
   # Run cargo tests
   checkType = "debug";
@@ -82,7 +83,7 @@ rustPlatform.buildRustPackage rec {
   meta = {
     description = "Extremely fast Python linter and code formatter";
     homepage = "https://github.com/astral-sh/ruff";
-    changelog = "https://github.com/astral-sh/ruff/releases/tag/${version}";
+    changelog = "https://github.com/astral-sh/ruff/releases/tag/${finalAttrs.version}";
     license = lib.licenses.mit;
     mainProgram = "ruff";
     maintainers = with lib.maintainers; [
@@ -90,4 +91,4 @@ rustPlatform.buildRustPackage rec {
       GaetanLepage
     ];
   };
-}
+})

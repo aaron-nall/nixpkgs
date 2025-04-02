@@ -24,10 +24,11 @@ let
 
 in
 lib.mapAttrs mkLicense ({
-  /* License identifiers from spdx.org where possible.
-   * If you cannot find your license here, then look for a similar license or
-   * add it to this list. The URL mentioned above is a good source for inspiration.
-   */
+  /**
+    License identifiers from spdx.org where possible.
+    If you cannot find your license here, then look for a similar license or
+    add it to this list. The URL mentioned above is a good source for inspiration.
+  */
 
   abstyles = {
     spdxId = "Abstyles";
@@ -37,7 +38,9 @@ lib.mapAttrs mkLicense ({
   acsl14 = {
     fullName = "Anti-Capitalist Software License v1.4";
     url = "https://anticapitalist.software/";
-    /* restrictions on corporations apply for both use and redistribution */
+    /**
+      restrictions on corporations apply for both use and redistribution
+    */
     free = false;
     redistributable = false;
   };
@@ -92,6 +95,11 @@ lib.mapAttrs mkLicense ({
     free = false;
   };
 
+  aml = {
+    spdxId = "AML";
+    fullName = "Apple MIT License";
+  };
+
   ampas = {
     spdxId = "AMPAS";
     fullName = "Academy of Motion Picture Arts and Sciences BSD";
@@ -135,11 +143,6 @@ lib.mapAttrs mkLicense ({
   asl20 = {
     spdxId = "Apache-2.0";
     fullName = "Apache License 2.0";
-  };
-
-  asl20-llvm = {
-    spdxId = "Apache-2.0 WITH LLVM-exception";
-    fullName = "Apache License 2.0 with LLVM Exceptions";
   };
 
   bitstreamVera = {
@@ -215,6 +218,11 @@ lib.mapAttrs mkLicense ({
   bsd3Lbnl = {
     spdxId = "BSD-3-Clause-LBNL";
     fullName = "Lawrence Berkeley National Labs BSD variant license";
+  };
+
+  bsdAxisNoDisclaimerUnmodified = {
+    fullName = "BSD-Axis without Warranty Disclaimer with Unmodified requirement";
+    url = "https://scancode-licensedb.aboutcode.org/bsd-no-disclaimer-unmodified.html";
   };
 
   bsdOriginal = {
@@ -849,6 +857,11 @@ lib.mapAttrs mkLicense ({
   llgpl21 = {
     fullName = "Lisp LGPL; GNU Lesser General Public License version 2.1 with Franz Inc. preamble for clarification of LGPL terms in context of Lisp";
     url = "https://opensource.franz.com/preamble.html";
+  };
+
+  llvm-exception = {
+    spdxId = "LLVM-exception";
+    fullName = "LLVM Exception"; # LLVM exceptions to the Apache 2.0 License
   };
 
   lppl1 = {

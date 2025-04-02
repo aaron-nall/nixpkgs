@@ -62,6 +62,9 @@ let
         skopeo
         umoci
       ]
+      ++ lib.optionals (lib.versionAtLeast cfg.package.version "6.11.0") [
+        lego
+      ]
       ++ lib.optionals config.security.apparmor.enable [
         apparmor-bin-utils
 
@@ -270,12 +273,9 @@ in
       };
 
       ui = {
-        enable = lib.mkEnableOption "(experimental) Incus UI";
+        enable = lib.mkEnableOption "Incus Web UI";
 
-        package = lib.mkPackageOption pkgs [
-          "incus"
-          "ui"
-        ] { };
+        package = lib.mkPackageOption pkgs [ "incus-ui-canonical" ] { };
       };
     };
   };
@@ -309,6 +309,7 @@ in
     };
 
     boot.kernelModules = [
+      "br_netfilter"
       "veth"
       "xt_comment"
       "xt_CHECKSUM"

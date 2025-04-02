@@ -1,7 +1,6 @@
 {
   stdenv,
   fetchFromGitHub,
-  fetchzip,
   lib,
   cmake,
   nix-update-script,
@@ -9,13 +8,13 @@
 }:
 stdenv.mkDerivation {
   pname = "airwindows";
-  version = "0-unstable-2025-02-02";
+  version = "0-unstable-2025-03-23";
 
   src = fetchFromGitHub {
     owner = "airwindows";
     repo = "airwindows";
-    rev = "14f348fe83cfd42a6402856d3d15a1866b157996";
-    hash = "sha256-IHOEpVykX1416wQBqymFgYHA8AnNH9mfUU53IkVVs6Y=";
+    rev = "9de336a436cb5ea1e47a319947acb1ea44cede6e";
+    hash = "sha256-gI5dmI5ysoCmUBTL6CgUw+F/K8D4RbXlXNTpIJMbotk=";
   };
 
   # we patch helpers because honestly im spooked out by where those variables

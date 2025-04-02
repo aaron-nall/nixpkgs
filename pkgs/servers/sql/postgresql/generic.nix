@@ -4,15 +4,17 @@ let
     # utils
     {
       stdenv,
+      fetchFromGitHub,
       fetchpatch,
       fetchurl,
       lib,
-      substituteAll,
+      replaceVars,
       writeShellScriptBin,
 
       # source specification
       hash,
       muslPatches ? { },
+      rev,
       version,
 
       # runtime dependencies
@@ -130,9 +132,12 @@ let
       inherit version;
       pname = pname + lib.optionalString jitSupport "-jit";
 
-      src = fetchurl {
-        url = "mirror://postgresql/source/v${version}/${pname}-${version}.tar.bz2";
-        inherit hash;
+      src = fetchFromGitHub {
+        owner = "postgres";
+        repo = "postgres";
+        # rev, not tag, on purpose: allows updating when new versions
+        # are "stamped" a few days before release (tag).
+        inherit hash rev;
       };
 
       __structuredAttrs = true;
@@ -215,22 +220,20 @@ let
 
       nativeBuildInputs =
         [
+          bison
+          docbook-xsl-nons
+          docbook_xml_dtd_45
+          flex
           libxml2
+          libxslt
           makeWrapper
+          perl
           pkg-config
           removeReferencesTo
         ]
         ++ lib.optionals jitSupport [
           llvmPackages.llvm.dev
           nukeReferences
-        ]
-        ++ lib.optionals (atLeast "17") [
-          bison
-          flex
-          perl
-          docbook_xml_dtd_45
-          docbook-xsl-nons
-          libxslt
         ];
 
       enableParallelBuilding = true;
@@ -299,13 +302,7 @@ let
           ./patches/paths-for-split-outputs.patch
           ./patches/paths-with-postgresql-suffix.patch
 
-          (fetchpatch {
-            url = "https://github.com/postgres/postgres/commit/8108674f0e5639baebcf03b54b7ccf9e9a8662a2.patch";
-            hash = "sha256-EQJkDR0eb7QWCjyMzXMn+Vbcwx3MMdC83oN7XSVJP0U=";
-          })
-
-          (substituteAll {
-            src = ./patches/locale-binary-path.patch;
+          (replaceVars ./patches/locale-binary-path.patch {
             locale = "${
               if stdenv.hostPlatform.isDarwin then darwin.adv_cmds else lib.getBin stdenv.cc.libc
             }/bin/locale";
@@ -398,12 +395,16 @@ let
       doInstallCheck =
         !(stdenv'.hostPlatform.isStatic)
         &&
-          # Tests just get stuck on macOS 14.x for v13 and v14
-          !(stdenv'.hostPlatform.isDarwin && olderThan "15")
-        &&
-          # Likely due to rosetta emulation:
+          # Tests currently can't be run on darwin, because of a Nix bug:
+          # https://github.com/NixOS/nix/issues/12548
+          # https://git.lix.systems/lix-project/lix/issues/691
+          # The error appears as this in the initdb logs:
           #   FATAL:  could not create shared memory segment: Cannot allocate memory
-          !(stdenv'.hostPlatform.isDarwin && stdenv'.hostPlatform.isx86_64);
+          # Don't let yourself be fooled when trying to remove this condition: Running
+          # the tests works fine most of the time. But once the tests (or any package using
+          # postgresqlTestHook) fails on the same machine for a few times, enough IPC objects
+          # will be stuck around, and any future builds with the tests enabled *will* fail.
+          !(stdenv'.hostPlatform.isDarwin);
       installCheckTarget = "check-world";
 
       passthru =
@@ -428,41 +429,15 @@ let
                 inherit (llvmPackages) llvm;
                 postgresql = this;
                 stdenv = stdenv';
-                postgresqlTestExtension =
-                  {
-                    finalPackage,
-                    withPackages ? [ ],
-                    ...
-                  }@extraArgs:
-                  stdenvNoCC.mkDerivation (
-                    {
-                      name = "${finalPackage.name}-test-extension";
-                      dontUnpack = true;
-                      doCheck = true;
-                      nativeCheckInputs = [
-                        postgresqlTestHook
-                        (this.withPackages (ps: [ finalPackage ] ++ (map (p: ps."${p}") withPackages)))
-                      ];
-                      failureHook = "postgresqlStop";
-                      postgresqlTestUserOptions = "LOGIN SUPERUSER";
-                      passAsFile = [ "sql" ];
-                      checkPhase = ''
-                        runHook preCheck
-                        psql -a -v ON_ERROR_STOP=1 -f "$sqlPath"
-                        runHook postCheck
-                      '';
-                      installPhase = "touch $out";
-                    }
-                    // extraArgs
-                  );
-                buildPostgresqlExtension = newSuper.callPackage ./buildPostgresqlExtension.nix { };
+                postgresqlTestExtension = newSuper.callPackage ./postgresqlTestExtension.nix { };
+                postgresqlBuildExtension = newSuper.callPackage ./postgresqlBuildExtension.nix { };
               };
               newSelf = self // scope;
               newSuper = {
                 callPackage = newScope (scope // this.pkgs);
               };
             in
-            import ./ext newSelf newSuper;
+            import ./ext.nix newSelf newSuper;
 
           withPackages = postgresqlWithPackages {
             inherit buildEnv;

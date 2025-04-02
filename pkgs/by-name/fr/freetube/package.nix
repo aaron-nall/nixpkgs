@@ -20,13 +20,13 @@ let
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "freetube";
-  version = "0.23.1";
+  version = "0.23.3";
 
   src = fetchFromGitHub {
     owner = "FreeTubeApp";
     repo = "FreeTube";
     tag = "v${finalAttrs.version}-beta";
-    hash = "sha256-I3C6gPPSTD/GzCoyyAxTfNEW83etJKJFb3uUKLUT79c=";
+    hash = "sha256-EpcYNUtGbEFvetroo1zAyfKxW70vD1Lk0aJKWcaV39I=";
   };
 
   # Darwin requires writable Electron dist
@@ -49,7 +49,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   yarnOfflineCache = fetchYarnDeps {
     yarnLock = "${finalAttrs.src}/yarn.lock";
-    hash = "sha256-oWDqar58vVoA6wdTpekwK/5xdro9YgNMxd1W0iT4hz8=";
+    hash = "sha256-xiJGzvmfrvvB6/rdwALOxhWSWAZ31cbySYygtG8+QpQ=";
   };
 
   nativeBuildInputs = [
@@ -109,6 +109,11 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       alyaeanyx
       ryand56
       sigmasquadron
+    ];
+    badPlatforms = [
+      # output app is called "Electron.app" while derivation expects "FreeTube.app"
+      #see: https://github.com/NixOS/nixpkgs/pull/384596#issuecomment-2677141349
+      lib.systems.inspect.patterns.isDarwin
     ];
     inherit (electron.meta) platforms;
     mainProgram = "freetube";

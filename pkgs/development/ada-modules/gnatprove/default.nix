@@ -56,6 +56,9 @@ let
       patches = [
         # Disable Coq related targets which are missing in the fsf-14 branch
         ./0001-fix-install.patch
+
+        # Suppress warnings on aarch64: https://github.com/AdaCore/spark2014/issues/54
+        ./0002-mute-aarch64-warnings.patch
       ];
       commit_date = "2024-01-11";
     };
@@ -65,7 +68,7 @@ let
     (builtins.throw "GNATprove depends on a specific GNAT version and can't be built using GNAT ${gnat_version}.");
 
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "gnatprove";
   version = "fsf-${gnat_version}_${thisSpark.commit_date}";
 

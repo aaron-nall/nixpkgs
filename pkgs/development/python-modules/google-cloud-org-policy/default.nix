@@ -13,7 +13,7 @@
 
 buildPythonPackage rec {
   pname = "google-cloud-org-policy";
-  version = "1.12.0";
+  version = "1.13.1";
   pyproject = true;
 
   disabled = pythonOlder "3.7";
@@ -21,7 +21,7 @@ buildPythonPackage rec {
   src = fetchPypi {
     pname = "google_cloud_org_policy";
     inherit version;
-    hash = "sha256-xM9fJH21AbNOrNZG1Ahs+NuhKOxCuKv41mSrJQXjH2Y=";
+    hash = "sha256-2yPr1sgmxMnQwk6Z1T9i2MFPeAxjb40r4IqNoAd7WZk=";
   };
 
   build-system = [ setuptools ];

@@ -60,15 +60,6 @@ let
       # hwdb.bin is managed by NixOS
       # "systemd-hwdb-update.service"
 
-      # Consoles.
-      "getty.target"
-      "getty-pre.target"
-      "getty@.service"
-      "serial-getty@.service"
-      "console-getty.service"
-      "container-getty@.service"
-      "systemd-vconsole-setup.service"
-
       # Hardware (started by udev when a relevant device is plugged in).
       "sound.target"
       "bluetooth.target"
@@ -97,6 +88,7 @@ let
       "sys-fs-fuse-connections.mount"
       ] ++ (optional (!config.boot.isContainer) "sys-kernel-config.mount") ++ [
       "sys-kernel-debug.mount"
+      "sys-kernel-tracing.mount"
 
       # Maintaining state across reboots.
       "systemd-random-seed.service"
@@ -112,7 +104,7 @@ let
       "sleep.target"
       "hybrid-sleep.target"
       "systemd-hibernate.service"
-      "systemd-hibernate-clear.service"
+    ] ++ (lib.optional cfg.package.withEfi "systemd-hibernate-clear.service") ++ [
       "systemd-hybrid-sleep.service"
       "systemd-suspend.service"
       "systemd-suspend-then-hibernate.service"
@@ -138,11 +130,13 @@ let
       "systemd-ask-password-wall.service"
 
       # Varlink APIs
+    ] ++ lib.optionals cfg.package.withBootloader [
       "systemd-bootctl@.service"
       "systemd-bootctl.socket"
+    ] ++ [
       "systemd-creds@.service"
       "systemd-creds.socket"
-    ] ++ lib.optional cfg.package.withTpm2Tss [
+    ] ++ lib.optional cfg.package.withTpm2Units [
       "systemd-pcrlock@.service"
       "systemd-pcrlock.socket"
     ] ++ [

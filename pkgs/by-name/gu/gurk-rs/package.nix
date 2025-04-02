@@ -8,6 +8,7 @@
   pkgsBuildHost,
   openssl,
   pkg-config,
+  writableTmpDirAsHomeHook,
   versionCheckHook,
   nix-update-script,
   gurk-rs,
@@ -18,13 +19,13 @@ let
 in
 rustPlatform.buildRustPackage rec {
   pname = "gurk-rs";
-  version = "0.6.1";
+  version = "0.6.3";
 
   src = fetchFromGitHub {
     owner = "boxdot";
     repo = "gurk-rs";
     tag = "v${version}";
-    hash = "sha256-cNKUQlCzhOgyWoitHjRoVdehj8AUEslHBCGxH9nRWF4=";
+    hash = "sha256-6WU5epBnCPCkEYPZvWMOGOdkw8cL+nvHKs3RnsrhJO0=";
   };
 
   postPatch = ''
@@ -33,7 +34,7 @@ rustPlatform.buildRustPackage rec {
 
   useFetchCargoVendor = true;
 
-  cargoHash = "sha256-eh7ZD8ZX1oKiJbJcVtk6pczb6HxNM6md93P/22Qn5u0=";
+  cargoHash = "sha256-qW+9d2Etwh9sPxgy0mZtUFtkjlFTHU5uJYTW5jLcBlo=";
 
   nativeBuildInputs = [
     protobuf
@@ -52,6 +53,8 @@ rustPlatform.buildRustPackage rec {
   OPENSSL_NO_VENDOR = true;
 
   useNextest = true;
+
+  nativeCheckInputs = [ writableTmpDirAsHomeHook ];
 
   nativeInstallCheckInputs = [
     versionCheckHook

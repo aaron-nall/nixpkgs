@@ -2,7 +2,7 @@
 , callPackage, newScope, recurseIntoAttrs, ocamlPackages_4_14
 , fetchpatch, makeWrapper,
 }@args:
-let lib = import ../build-support/coq/extra-lib.nix {inherit (args) lib;}; in
+let lib = import ../build-support/rocq/extra-lib.nix {inherit (args) lib;}; in
 let
   mkRocqPackages' = self: rocq-core:
     let callPackage = self.callPackage; in {
@@ -14,6 +14,7 @@ let
       mkRocqDerivation = lib.makeOverridable (callPackage ../build-support/rocq {});
 
       bignums = callPackage ../development/rocq-modules/bignums {};
+      rocq-elpi = callPackage ../development/rocq-modules/rocq-elpi {};
       stdlib = callPackage ../development/rocq-modules/stdlib {};
 
       filterPackages = doesFilter: if doesFilter then filterRocqPackages self else self;
@@ -40,7 +41,7 @@ in rec {
    * a set of libraries built with that specific Rocq. More libraries are known to
    * this function than what is compatible with that version of Rocq. Therefore,
    * libraries that are not known to be compatible are removed (filtered out) from
-   * the resulting set. For meta-programming purposes (inpecting the derivations
+   * the resulting set. For meta-programming purposes (inspecting the derivations
    * rather than building the libraries) this filtering can be disabled by setting
    * a `dontFilter` attribute into the Rocq derivation.
    */
@@ -48,7 +49,7 @@ in rec {
     let self = lib.makeScope newScope (lib.flip mkRocqPackages' rocq-core); in
     self.filterPackages (! rocq-core.dontFilter or false);
 
-  rocq-core_9_0  = mkRocq "9.0+rc1";
+  rocq-core_9_0  = mkRocq "9.0";
 
   rocqPackages_9_0 = mkRocqPackages rocq-core_9_0;
 

@@ -14,33 +14,33 @@
   glib,
   glib-networking,
   webkitgtk_4_0,
+  jq,
+  moreutils,
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "cinny-desktop";
   # We have to be using the same version as cinny-web or this isn't going to work.
-  # TODO: this is temporarily not true for Cinny Desktop v4.3.1
-  version = "4.3.1";
+  version = "4.5.1";
 
   src = fetchFromGitHub {
     owner = "cinnyapp";
     repo = "cinny-desktop";
     tag = "v${version}";
-    hash = "sha256-lVBKzajxsQ33zC6NhRLMbWK81GxCbIQPtSR61yJHUL4=";
+    hash = "sha256-xWHR0lg/3w2K+hExKCD84hdQ7UCZRrOnH2dNybaYMFE=";
   };
 
   sourceRoot = "${src.name}/src-tauri";
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-a2IyJ5a11cxgHpb2WRDxVF+aoL8kNnjBNwaQpgT3goo=";
+  cargoHash = "sha256-iI0oWuETVVPuoKlWplsgocF7DEvwTVSp5r1WmQd7R04=";
 
   postPatch =
     let
       cinny' =
-        # TODO: temporarily disabled for Cinny Desktop v4.3.1 (cinny-unwrapped is still at 4.3.0)
-        # assert lib.assertMsg (
-        #   cinny.version == version
-        # ) "cinny.version (${cinny.version}) != cinny-desktop.version (${version})";
+        assert lib.assertMsg (
+          cinny.version == version
+        ) "cinny.version (${cinny.version}) != cinny-desktop.version (${version})";
         cinny.override {
           conf = {
             hashRouter.enabled = true;
@@ -48,10 +48,9 @@ rustPlatform.buildRustPackage rec {
         };
     in
     ''
-      substituteInPlace tauri.conf.json \
-        --replace-warn '"distDir": "../cinny/dist",' '"distDir": "${cinny'}",'
-      substituteInPlace tauri.conf.json \
-        --replace-warn '"cd cinny && npm run build"' '""'
+      ${lib.getExe jq} \
+        'del(.tauri.updater) | .build.distDir = "${cinny'}" | del(.build.beforeBuildCommand)' tauri.conf.json \
+        | ${lib.getExe' moreutils "sponge"} tauri.conf.json
     '';
 
   postInstall =

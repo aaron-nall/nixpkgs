@@ -383,6 +383,12 @@ let
 
     dot-merlin-reader = callPackage ../development/tools/ocaml/merlin/dot-merlin-reader.nix { };
 
+    dream = callPackage ../development/ocaml-modules/dream { };
+
+    dream-httpaf = callPackage ../development/ocaml-modules/dream/httpaf.nix { };
+
+    dream-pure = callPackage ../development/ocaml-modules/dream/pure.nix { };
+
     dscheck = callPackage ../development/ocaml-modules/dscheck { };
 
     dssi = callPackage ../development/ocaml-modules/dssi { };
@@ -460,7 +466,15 @@ let
       stdenv = pkgs.gcc13Stdenv;
     };
 
-    eliom = callPackage ../development/ocaml-modules/eliom { };
+    eliom = let
+      js_of_ocaml-compiler = self.js_of_ocaml-compiler.override { version = "5.9.1"; };
+      js_of_ocaml = self.js_of_ocaml.override { inherit js_of_ocaml-compiler; };
+    in callPackage ../development/ocaml-modules/eliom rec {
+      js_of_ocaml-ppx = self.js_of_ocaml-ppx.override { inherit js_of_ocaml; };
+      js_of_ocaml-ppx_deriving_json = self.js_of_ocaml-ppx_deriving_json.override { inherit js_of_ocaml; };
+      js_of_ocaml-lwt = self.js_of_ocaml-lwt.override { inherit js_of_ocaml js_of_ocaml-ppx; };
+      js_of_ocaml-tyxml = self.js_of_ocaml-tyxml.override { inherit js_of_ocaml js_of_ocaml-ppx; };
+    };
 
     elpi = callPackage ../development/ocaml-modules/elpi (
       let ppxlib_0_15 = if lib.versionAtLeast ppxlib.version "0.15"
@@ -669,6 +683,8 @@ let
     };
 
     ### H ###
+
+    h1 = callPackage ../development/ocaml-modules/h1 { };
 
     h2 = callPackage ../development/ocaml-modules/h2 { };
 
@@ -970,9 +986,7 @@ let
     lambda-term = callPackage ../development/ocaml-modules/lambda-term { };
 
     lambdapi = callPackage ../development/ocaml-modules/lambdapi {
-      why3 = pkgs.why3.override { ocamlPackages = self;
-        version = "1.7.2"; coqPackages = pkgs.coqPackages_8_18;
-      };
+      why3 = pkgs.why3.override { ocamlPackages = self; };
     };
 
     lambdasoup = callPackage ../development/ocaml-modules/lambdasoup { };
@@ -1194,6 +1208,8 @@ let
 
     mirage-logs = callPackage ../development/ocaml-modules/mirage-logs { };
 
+    mirage-mtime = callPackage ../development/ocaml-modules/mirage-mtime { };
+
     mirage-nat = callPackage ../development/ocaml-modules/mirage-nat { };
 
     mirage-net = callPackage ../development/ocaml-modules/mirage-net { };
@@ -1204,11 +1220,15 @@ let
 
     mirage-protocols = callPackage ../development/ocaml-modules/mirage-protocols { };
 
+    mirage-ptime = callPackage ../development/ocaml-modules/mirage-ptime { };
+
     mirage-random = callPackage ../development/ocaml-modules/mirage-random { };
 
     mirage-random-test = callPackage ../development/ocaml-modules/mirage-random-test { };
 
     mirage-runtime = callPackage ../development/ocaml-modules/mirage/runtime.nix { };
+
+    mirage-sleep = callPackage ../development/ocaml-modules/mirage-sleep { };
 
     mirage-time = callPackage ../development/ocaml-modules/mirage-time { };
 
@@ -1231,6 +1251,8 @@ let
     mm = callPackage ../development/ocaml-modules/mm { };
 
     mmap =  callPackage ../development/ocaml-modules/mmap { };
+
+    monolith = callPackage ../development/ocaml-modules/monolith { };
 
     mopsa = callPackage ../development/ocaml-modules/mopsa { };
 
@@ -1268,6 +1290,8 @@ let
     };
 
     netchannel = callPackage ../development/ocaml-modules/netchannel { };
+
+    nice_parser = callPackage ../development/ocaml-modules/nice_parser { };
 
     ninja_utils = callPackage ../development/ocaml-modules/ninja_utils { };
 
@@ -1423,7 +1447,12 @@ let
 
     ocsigen-start = callPackage ../development/ocaml-modules/ocsigen-start { };
 
-    ocsigen-toolkit = callPackage ../development/ocaml-modules/ocsigen-toolkit { };
+    ocsigen-toolkit = let
+      js_of_ocaml-compiler = self.js_of_ocaml-compiler.override { version = "5.9.1"; };
+      js_of_ocaml = self.js_of_ocaml.override { inherit js_of_ocaml-compiler; };
+    in callPackage ../development/ocaml-modules/ocsigen-toolkit {
+      js_of_ocaml-ppx_deriving_json = self.js_of_ocaml-ppx_deriving_json.override { inherit js_of_ocaml; };
+    };
 
     ocsipersist = callPackage ../development/ocaml-modules/ocsipersist {};
 
@@ -1517,6 +1546,10 @@ let
 
     pbrt = callPackage ../development/ocaml-modules/pbrt { };
 
+    pcre2 = callPackage ../development/ocaml-modules/pcre2 {
+      inherit (pkgs) pcre2;
+    };
+
     pcap-format = callPackage ../development/ocaml-modules/pcap-format { };
 
     pecu = callPackage ../development/ocaml-modules/pecu { };
@@ -1548,6 +1581,8 @@ let
     };
 
     posix-base = callPackage ../development/ocaml-modules/posix/base.nix { };
+
+    posix-math2 = callPackage ../development/ocaml-modules/posix/math2.nix { };
 
     posix-socket = callPackage ../development/ocaml-modules/posix/socket.nix { };
 
@@ -1844,7 +1879,7 @@ let
     ### T ###
 
     taglib = callPackage ../development/ocaml-modules/taglib {
-      inherit (pkgs) taglib;
+      inherit (pkgs) taglib_1;
     };
 
     tar = callPackage ../development/ocaml-modules/tar { };
@@ -1992,6 +2027,8 @@ let
     ### W ###
 
     wasm = callPackage ../development/ocaml-modules/wasm { };
+
+    wasm_of_ocaml-compiler = callPackage ../development/tools/ocaml/js_of_ocaml/compiler-wasm.nix { };
 
     wayland = callPackage ../development/ocaml-modules/wayland { };
 

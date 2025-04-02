@@ -1,12 +1,13 @@
 {
   lib,
   stdenv,
-  buildGoModule,
+  buildGo124Module,
   fetchFromGitHub,
   fetchNpmDeps,
   cacert,
   git,
-  go,
+  go_1_24,
+  gokrazy,
   enumer,
   mockgen,
   nodejs,
@@ -16,23 +17,23 @@
 }:
 
 let
-  version = "0.133.0";
+  version = "0.202.1";
 
   src = fetchFromGitHub {
     owner = "evcc-io";
     repo = "evcc";
     tag = version;
-    hash = "sha256-10xgw6zL49Hk7OH5c6lqeTsIhdkSOyRZCJjSkQox0XI=";
+    hash = "sha256-GMKhlNZLk6R0XZn5I3YP5Eav8wD6WbEr1DM+VVtQtjo=";
   };
 
-  vendorHash = "sha256-aBTs6S7b+1JS9MNKWMpuUZ6AXb9ylfXnuAV7q9WnE9w=";
+  vendorHash = "sha256-K9X63dTWE+dC5yo8LX86pUezm8OHwEHNXwxXHn/4AwU=";
 
   commonMeta = with lib; {
     license = licenses.mit;
     maintainers = with maintainers; [ hexa ];
   };
 
-  decorate = buildGoModule {
+  decorate = buildGo124Module {
     pname = "evcc-decorate";
     inherit version src vendorHash;
 
@@ -45,13 +46,13 @@ let
   };
 in
 
-buildGoModule rec {
+buildGo124Module rec {
   pname = "evcc";
   inherit version src vendorHash;
 
   npmDeps = fetchNpmDeps {
     inherit src;
-    hash = "sha256-AlwmMipGBnUSaqXxVBlC1c1IZ5utxLYx01T9byXOTrQ=";
+    hash = "sha256-iTrmgNmUoHQWL5tsqhUnd0t1t9qengb6ba9pxYrL9Ks=";
   };
 
   nativeBuildInputs = [
@@ -63,7 +64,8 @@ buildGoModule rec {
     nativeBuildInputs = [
       decorate
       enumer
-      go
+      go_1_24
+      gokrazy
       git
       cacert
       mockgen
@@ -115,5 +117,6 @@ buildGoModule rec {
     description = "EV Charge Controller";
     homepage = "https://evcc.io";
     changelog = "https://github.com/evcc-io/evcc/releases/tag/${version}";
+    mainProgram = "evcc";
   };
 }
