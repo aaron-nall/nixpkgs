@@ -14,6 +14,9 @@ if [[ "$latestVersion" == "$currentVersion" ]]; then
     exit 0
 fi
 
+ROOT="$(dirname "$(readlink -f "$0")")"
+sed -i "s/version = \"[^\"]*\"/version = \"$latestVersion\"/" "$ROOT/package.nix"
+
 linux_systems=(
     "x86_64-linux:"
     "aarch64-linux:-arm64"
@@ -24,7 +27,7 @@ for entry in "${linux_systems[@]}"; do
     suffix="${entry#*:}"
     prefetch=$(nix-prefetch-url --unpack "https://download.jetbrains.com/toolbox/jetbrains-toolbox-$latestVersion$suffix.tar.gz")
     hash=$(nix hash convert --hash-algo sha256 --to sri $prefetch)
-    update-source-version jetbrains-toolbox $latestVersion $hash --system=$arch --ignore-same-version
+    sed -i "s|$arch = \"sha256-[^\"]*\"|$arch = \"$hash\"|g" "$ROOT/package.nix"
 done
 
 darwin_systems=(
