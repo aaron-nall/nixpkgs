@@ -6,6 +6,7 @@
   fetchurl,
   makeWrapper,
   icu,
+  libappindicator-gtk3,
   undmg,
 }:
 
@@ -13,7 +14,7 @@ let
   pname = "jetbrains-toolbox";
   version = "2.6.0.40632";
 
-  passthru.updateScript = ./update.sh;
+  updateScript = ./update.sh;
 
   meta = {
     description = "Jetbrains Toolbox";
@@ -34,12 +35,22 @@ let
     attrs.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
 
   linux = appimageTools.wrapAppImage rec {
-    inherit
-      pname
-      version
-      passthru
-      meta
-      ;
+    inherit pname version meta;
+
+    source =
+      let
+        arch = selectSystem {
+          x86_64-linux = "";
+          aarch64-linux = "-arm64";
+        };
+      in
+      fetchzip {
+        url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-${version}${arch}.tar.gz";
+        hash = selectSystem {
+          x86_64-linux = "sha256-P4kv6ca6mGtl334HKNkdo9Iib/Cgu3ROrbQKlQqxUj4=";
+          aarch64-linux = "sha256-mG8GAVPi2I0A13rKhXoXxiRIHK1QOWPv4gZxfm0+DKs=";
+        };
+      };
 
     src = appimageTools.extractType2 {
       inherit pname version;
@@ -69,17 +80,18 @@ let
       install -Dm644 ${src}/jetbrains-toolbox.desktop $out/share/applications/jetbrains-toolbox.desktop
       install -Dm644 ${src}/.DirIcon $out/share/icons/hicolor/scalable/apps/jetbrains-toolbox.svg
       wrapProgram $out/bin/jetbrains-toolbox \
+        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libappindicator-gtk3 ]} \
         --append-flags "--update-failed"
     '';
+
+    passthru = {
+      src = source;
+      inherit updateScript;
+    };
   };
 
   darwin = stdenv.mkDerivation (finalAttrs: {
-    inherit
-      pname
-      version
-      passthru
-      meta
-      ;
+    inherit pname version meta;
 
     src =
       let
@@ -109,6 +121,10 @@ let
 
       runHook postInstall
     '';
+
+    passthru = {
+      inherit updateScript;
+    };
   });
 in
 if stdenv.hostPlatform.isDarwin then darwin else linux
