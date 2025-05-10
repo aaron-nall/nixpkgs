@@ -43,16 +43,21 @@ stdenv.mkDerivation (finalPackage: rec {
     hash = "sha256-vprZonb0MFq33S9SJci+H/VDUvVl/03t6WKMGqp97Fc=";
   };
 
-  patches = [
-    ./rtcwake-search-PATH-for-shutdown.patch
-  ]
-  ++ lib.optionals (!stdenv.hostPlatform.isLinux) [
-    (fetchurl {
-      name = "bits-only-build-when-cpu_set_t-is-available.patch";
-      url = "https://lore.kernel.org/util-linux/20250501075806.88759-1-hi@alyssa.is/raw";
-      hash = "sha256-G7Cdv8636wJEjgt9am7PaDI8bpSF8sO9bFWEIiAL25A=";
-    })
-  ];
+  patches =
+    [
+      ./rtcwake-search-PATH-for-shutdown.patch
+      # https://github.com/util-linux/util-linux/pull/3013
+      ./fix-darwin-build.patch
+      # https://github.com/util-linux/util-linux/pull/3479 (fixes https://github.com/util-linux/util-linux/issues/3474)
+      ./fix-mount-regression.patch
+    ]
+    ++ lib.optionals (!stdenv.hostPlatform.isLinux) [
+      (fetchurl {
+        name = "bits-only-build-when-cpu_set_t-is-available.patch";
+        url = "https://lore.kernel.org/util-linux/20250501075806.88759-1-hi@alyssa.is/raw";
+        hash = "sha256-G7Cdv8636wJEjgt9am7PaDI8bpSF8sO9bFWEIiAL25A=";
+      })
+    ];
 
   # We separate some of the utilities into their own outputs. This
   # allows putting together smaller systems depending on only part of
