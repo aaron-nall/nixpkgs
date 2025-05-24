@@ -26,25 +26,19 @@ buildGoModule (finalAttrs: {
 
   vendorHash = "sha256-0927IeFIC2rhApPVs5ZIvS3yoDN8Km3tHgrRXnP/wBc=";
 
-  patches = [
-    ./nopi.patch
-  ];
-  prePatch = ''
-    rm -r ./internal/staticsources/rpicamera
-  '';
   postPatch = ''
     cp ${hlsJs} internal/servers/hls/hls.min.js
     echo "v${finalAttrs.version}" > internal/core/VERSION
 
     # disable binary-only rpi camera support
-    # substituteInPlace internal/staticsources/rpicamera/camera_disabled.go \
-    #   --replace-fail '!linux || (!arm && !arm64)' 'linux || !linux'
-    # substituteInPlace internal/staticsources/rpicamera/{camera,params_serialize,pipe}.go \
-    #   --replace-fail '(linux && arm) || (linux && arm64)' 'linux && !linux'
-    # substituteInPlace internal/staticsources/rpicamera/camera_32.go \
-    #   --replace-fail 'linux && arm' 'linux && !linux'
-    # substituteInPlace internal/staticsources/rpicamera/camera_64.go \
-    #   --replace-fail 'linux && arm64' 'linux && !linux'
+    substituteInPlace internal/staticsources/rpicamera/camera_disabled.go \
+      --replace-fail '!linux || (!arm && !arm64)' 'linux || !linux'
+    substituteInPlace internal/staticsources/rpicamera/{camera,params_serialize,pipe}.go \
+      --replace-fail '(linux && arm) || (linux && arm64)' 'linux && !linux'
+    substituteInPlace internal/staticsources/rpicamera/camera_32.go \
+      --replace-fail 'linux && arm' 'linux && !linux'
+    substituteInPlace internal/staticsources/rpicamera/camera_64.go \
+      --replace-fail 'linux && arm64' 'linux && !linux'
   '';
 
   subPackages = [ "." ];
