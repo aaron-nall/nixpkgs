@@ -12,7 +12,6 @@
 
 let
   pname = "jetbrains-toolbox";
-  version = "2.6.0.40632";
   version = "2.6.2.41321";
 
   updateScript = ./update.sh;
