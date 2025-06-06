@@ -64,7 +64,7 @@ let
         fetchzip {
           url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-${version}${arch}.tar.gz";
           hash = selectSystem {
-            x86_64-linux = "sha256-yg8EgDt8b/Q8Tj1P/A+l9tzl78bY/OLTfXa5q97DWgc=";
+            x86_64-linux = "sha256-nIvlO313GZhIpgyCUhp2FUzllD3tk0oRrxFzxtHSIQA=";
             aarch64-linux = "sha256-iggrnpjqLEqiteXnmA+eynTB7cs9YeOnNW4DWGP6mk0=";
           };
         }
