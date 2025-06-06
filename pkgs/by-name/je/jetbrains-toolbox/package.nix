@@ -13,6 +13,7 @@
 let
   pname = "jetbrains-toolbox";
   version = "2.6.0.40632";
+  version = "2.6.2.41321";
 
   updateScript = ./update.sh;
 
@@ -47,8 +48,8 @@ let
       fetchzip {
         url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-${version}${arch}.tar.gz";
         hash = selectSystem {
-          x86_64-linux = "sha256-P4kv6ca6mGtl334HKNkdo9Iib/Cgu3ROrbQKlQqxUj4=";
-          aarch64-linux = "sha256-mG8GAVPi2I0A13rKhXoXxiRIHK1QOWPv4gZxfm0+DKs=";
+          x86_64-linux = "sha256-nIvlO313GZhIpgyCUhp2FUzllD3tk0oRrxFzxtHSIQA=";
+          aarch64-linux = "sha256-iggrnpjqLEqiteXnmA+eynTB7cs9YeOnNW4DWGP6mk0=";
         };
       };
 
@@ -103,8 +104,8 @@ let
       fetchurl {
         url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-${finalAttrs.version}${arch}.dmg";
         hash = selectSystem {
-          x86_64-darwin = "sha256-l70uKSKYpV7fxkIyIuhDhU6d9kVlux3U95VpNP+cauc=";
-          aarch64-darwin = "sha256-MGYqRMxCgiumKFkPk4ztM6wAX/PDbxZyzSPatvUqM8E=";
+          x86_64-darwin = "sha256-518Ew3yhj6wrTfPklNTC6La0EOb/XmrFcNmoeNbod8k=";
+          aarch64-darwin = "sha256-Enyn4iJn8qLUdrvin44bGLv0dzl5VOL6KPi4AODhtPE=";
         };
       };
 

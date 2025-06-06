@@ -120,6 +120,8 @@
   websocat,
   # luau-lsp-nvim dependencies
   luau-lsp,
+  # uv.nvim dependencies
+  uv,
   # nvim-vstsl dependencies
   vtsls,
 }:
@@ -625,6 +627,7 @@ in
       "codecompanion.providers.actions.mini_pick"
       "codecompanion.providers.actions.snacks"
       "codecompanion.providers.actions.telescope"
+      "codecompanion.providers.actions.fzf_lua"
       "codecompanion.providers.diff.mini_diff"
       # Requires setup call
       "codecompanion.actions.static"
@@ -1278,6 +1281,10 @@ in
     configurePhase = "cd plugins/nvim";
   };
 
+  gh-nvim = super.gh-nvim.overrideAttrs {
+    dependencies = [ self.litee-nvim ];
+  };
+
   gitlinker-nvim = super.gitlinker-nvim.overrideAttrs {
     dependencies = [ self.plenary-nvim ];
   };
@@ -1900,6 +1907,7 @@ in
       # Optional image providers
       "load_image_nvim"
       "load_wezterm_nvim"
+      "load_snacks_nvim"
     ];
   };
 
@@ -3522,6 +3530,13 @@ in
     postPatch = "cd editor-support/vim";
   };
 
+  uv-nvim = super.uv-nvim.overrideAttrs {
+    dependencies = with self; [
+      telescope-nvim
+    ];
+    runtimeDeps = [ uv ];
+  };
+
   vCoolor-vim = super.vCoolor-vim.overrideAttrs {
     # on linux can use either Zenity or Yad.
     propagatedBuildInputs = [ zenity ];
@@ -4082,5 +4097,12 @@ in
       substituteInPlace autoload/zoxide.vim \
         --replace-fail "'zoxide_executable', 'zoxide'" "'zoxide_executable', '${zoxide}/bin/zoxide'"
     '';
+  };
+
+  nvim-k8s-crd = super.nvim-k8s-crd.overrideAttrs {
+    dependencies = with self; [
+      plenary-nvim
+      nvim-lspconfig
+    ];
   };
 }

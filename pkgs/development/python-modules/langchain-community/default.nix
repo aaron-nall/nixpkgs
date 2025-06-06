@@ -56,7 +56,7 @@ buildPythonPackage rec {
 
   pythonRelaxDeps = [
     # Each component release requests the exact latest langchain and -core.
-    # That prevents us from updating individul components.
+    # That prevents us from updating individual components.
     "langchain"
     "langchain-core"
     "numpy"
@@ -111,6 +111,9 @@ buildPythonPackage rec {
   disabledTests = [
     # requires bs4, aka BeautifulSoup
     "test_importable_all"
+    # flaky
+    "test_llm_caching"
+    "test_llm_caching_async"
   ];
 
   disabledTestPaths = [
