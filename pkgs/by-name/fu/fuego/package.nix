@@ -5,13 +5,13 @@
 
 buildGoModule rec {
   pname = "fuego";
-  version = "0.34.0";
+  version = "0.35.0";
 
   src = fetchFromGitHub {
     owner = "sgarciac";
     repo = "fuego";
     rev = "${version}";
-    hash = "sha256-CtkUJFvCmJ0xReWbKnYVhaN0b6aM6/4yERkYDl3/Axg=";
+    hash = "sha256-ljbjv4VYAMiuAgsr0t10SLeubZacuzaVtM7CZ5VqUhQ=";
   };
 
   vendorHash = "sha256-UbhXyuQjWwgZfr2R6KtHj8gvXejW9nonu4HmDLD4aEg=";
