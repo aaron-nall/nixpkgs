@@ -19,7 +19,7 @@ buildGoModule rec {
   meta = with lib; {
     description = "A command-line firestore client.";
     homepage = "https://github.com/sgarciac/fuego";
-    license = licenses.asl20;
+    license = licenses.gpl3Only;
     maintainers = with maintainers; [ aaron-nall ];
     mainProgram = "fuego";
   };
