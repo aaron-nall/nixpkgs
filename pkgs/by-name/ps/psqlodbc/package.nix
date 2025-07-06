@@ -23,7 +23,7 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "postgresql-interfaces";
     repo = "psqlodbc";
-    tag = "REL-${lib.replaceString "." "_" finalAttrs.version}";
+    tag = "REL-17_00_0006";
     hash = "sha256-iu1PWkfOyWtMmy7/8W+acu8v+e8nUPkCIHtVNZ8HzRg=";
   };
 
