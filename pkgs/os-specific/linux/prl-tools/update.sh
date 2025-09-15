@@ -46,7 +46,7 @@ fi
 # Update version and hash
 major_version="$(echo "$version" | cut -d. -f1)"
 dmg_url="https://download.parallels.com/desktop/v${major_version}/${version}/ParallelsDesktop-${version}.dmg"
-sha256="$(nix store prefetch-file "$dmg_url" --json | jq -r '.hash')"
+sha256="$(nix --extra-experimental-features nix-command store prefetch-file "$dmg_url" --json | jq -r '.hash')"
 sed -i -e "s,version = \"$old_version\",version = \"$version\"," \
     -e "s,hash = \"sha256-.*\",hash = \"$sha256\"," "$path"
 
